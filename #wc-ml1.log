@@ -1,0 +1,387 @@
+--- Log opened Mon Dec 12 18:51:54 2016
+18:51 -!- tushaar [~tushaar@157.49.231.53] has joined #wc-ml1
+18:51 -!- ServerMode/#wc-ml1 [+ns] by orwell.freenode.net
+18:51 -!- Irssi: #wc-ml1: Total of 1 nicks [1 ops, 0 halfops, 0 voices, 0 normal]
+18:51 -!- Irssi: Join to #wc-ml1 was synced in 2 secs
+18:56 -!- tushaar__ [~tushaar@2405:204:5082:572:c9b0:2409:a61b:9620] has joined #wc-ml1
+--- Log closed Mon Dec 12 18:57:22 2016
+--- Log opened Mon Dec 12 20:18:56 2016
+20:18 -!- tushaar [~tushaar@157.49.14.169] has joined #wc-ml1
+20:18 -!- ServerMode/#wc-ml1 [+ns] by niven.freenode.net
+20:18 -!- Irssi: #wc-ml1: Total of 1 nicks [1 ops, 0 halfops, 0 voices, 0 normal]
+20:18 -!- Irssi: Join to #wc-ml1 was synced in 4 secs
+20:26 -!- tushaar__ [~tushaar@2405:204:5082:572:3852:6045:4cc3:d823] has joined #wc-ml1
+20:28 -!- tushaar__ changed the topic of #wc-ml1 to: Machine Learning - Session 01
+20:28 -!- Session [67f62bfa@gateway/web/freenode/ip.103.246.43.250] has joined #wc-ml1
+20:28 -!- abhi_ [6745158c@gateway/web/freenode/ip.103.69.21.140] has joined #wc-ml1
+20:28 -!- bharath [75c7fd42@gateway/web/freenode/ip.117.199.253.66] has joined #wc-ml1
+20:30 < tushaar__> We will start in another 10 minutes.
+20:31 -!- qwerty [6a331fc3@gateway/web/freenode/ip.106.51.31.195] has joined #wc-ml1
+20:31 < tushaar__> Meanwhile, why don't you introduce yourselves?
+20:32 -!- hkagrawal1994 [2f086463@gateway/web/freenode/ip.47.8.100.99] has joined #wc-ml1
+20:32 -!- venkat [b07eedd6@gateway/web/freenode/ip.176.126.237.214] has joined #wc-ml1
+20:34 -!- Myk_ [2ff7aa53@gateway/web/freenode/ip.47.247.170.83] has joined #wc-ml1
+20:35 < tushaar__> Hey people, I want all of you to tell me what you know about Machine Learning?
+20:35 < Myk_> have u started ?
+20:36 < tushaar__> No.
+20:36 < Myk_> 😊 
+20:36 -!- ganesh_ [2ff706f0@gateway/web/freenode/ip.47.247.6.240] has joined #wc-ml1
+20:36 < tushaar__> Just an intro wouldn't hurt
+20:37 < Myk_> 😁 
+20:38 < Myk_> so what are we waiting for ?
+20:40 < Myk_> .
+20:40 < ganesh_> start ,noone is going to connect now
+20:41 < tushaar__> Okay first of all, we'll discuss what ml is?
+20:41 < tushaar__> Anyone?
+20:41 < tushaar__> Agenda: 
+20:42 < tushaar__> Basics of ML.
+20:42 < tushaar__> Supervised Learning (Unsupervised Learning also).
+20:42 < tushaar__> Regression and Linear Regression.
+20:42 -!- Aman_ [2f086bf8@gateway/web/freenode/ip.47.8.107.248] has joined #wc-ml1
+20:42 < tushaar__> We will be covering these 3 topics in today’s session
+20:43 < tushaar__> Noone? 
+20:43 < tushaar__> People respond. What is ML?
+20:43 < Myk_> no idea.
+20:43 < tushaar__> Okay
+20:43 < tushaar__> echnically, it is a type of artificial intelligence (AI) that gives computers the ability to learn without being explicitly programmed.
+20:43 < Myk_> is it related with AI
+20:43 < tushaar__> *Technically
+20:43 < tushaar__> Absolutely.
+20:44 < tushaar__> A more formal way of saying the same would be:
+20:45 < tushaar__> A computer program is said to learn from experience E with respect to some class of tasks T and performance P, if its performance at tasks in T, as measured by P, improves with experience E. 
+20:46 < tushaar__> any questions?
+20:47 < Myk_> nope
+20:47 < ganesh_> no carry on
+20:47 < Aman_> please elaborate..
+20:47 < Aman_> like...wth examples
+20:47 < tushaar__> See, if I want my computer to perform some task, what do I do?
+20:47 < tushaar__> I program it.
+20:47 -!- Aryanhimanshu [a995adf4@gateway/web/freenode/ip.169.149.173.244] has joined #wc-ml1
+20:48 < Aman_> okay..
+20:48 < tushaar__> instead, if my computer itself decides the best alternative from the past records or experience
+20:48 < tushaar__> it is called machine learning.
+20:49 < Aman_> ok..fine..
+20:49 < tushaar__> the performance or probability is what that matters to us
+20:49 < tushaar__> Consider the Example: Playing checkers.
+20:49 < tushaar__> E = the experience of playing many games of checkers.
+20:50 < tushaar__> T = the task of playing checkers.
+20:50 < tushaar__> P = the probability that the program will win the next game.
+20:50 < tushaar__> clear? @Aman?
+20:50 < Aman_> yes yes... :)
+20:50 < tushaar__> cool
+20:50 < tushaar__> anyone any doubts?
+20:51 < Aman_> no..not till now
+20:51 < Aryanhimanshu> I missed the beginning part 
+20:51 < Myk_> no carry on
+20:51 < Myk_> yepp
+20:51 < Aryanhimanshu> Can you send the log for that?
+20:51 < bharath> no
+20:51 < Myk_> u were late :P
+20:51 < Aryanhimanshu> Okay
+20:52 < tushaar__> Yeah sure @Aryanhimanshu
+20:52 < hkagrawal1994> no pblm 
+20:52 < tushaar__> So, from the discussion we infer that, Machine learning focuses on the development of computer programs that can teach themselves to grow and change when exposed to new data.
+20:53 < Aryanhimanshu> Ok
+20:53 < tushaar__> So, now that we are familiar with what ML actually is, let's move forward.
+20:53 < Aman_> thats what AI..? no..?
+20:53 < tushaar__> In general, any machine learning problem can be assigned to one of two broad classifications:
+20:53 < tushaar__> Supervised learning and Unsupervised learning.
+20:54 < tushaar__> Yes :) @Aman
+20:54 < Aman_> ok..
+20:55 < tushaar__> Any clue about Supervised learning?
+20:55 < tushaar__> Anyone?
+20:55 < Aman_> there must be some supervisor..i think..
+20:56 < Myk_> which works under supervision 😊 
+20:56 < tushaar__> Both of you are kinda correct, take a look at this:
+20:56 < tushaar__> https://ibin.co/3589s0n4gA0u.png
+20:57 -!- epic7joe [b959f915@gateway/web/freenode/ip.185.89.249.21] has joined #wc-ml1
+20:58 < tushaar__> Have all of you seen the Housing price prediction?
+20:58 < Session> yes
+20:59 < tushaar__> So, tell me now, what do you understand from the graph?
+20:59 < bharath> yes
+21:00 < Session> how house prices vary with size
+21:00 < tushaar__> Correct.
+21:00 < tushaar__> Consider the following example:
+21:00 < tushaar__> Say, one of your friends wants to sell a house of 750 square feet, how can we help him?
+21:00 -!- Myk_ [2ff7aa53@gateway/web/freenode/ip.47.247.170.83] has quit [Ping timeout: 260 seconds]
+21:01 < Session> cen tell himthe price referring to the graph
+21:01 < tushaar__> Elaborate @Session
+21:02 < tushaar__> Please be more interactive
+21:02 < tushaar__> @all
+21:02 < Session> prices for sizes close to 750 is clearly indicated. by taking some sort of weighted average, we can infer the price for 750 sq.ft
+21:03 < tushaar__> Perfect @Session
+21:03 < tushaar__> But, let's see all the possibilities.
+21:03 < tushaar__> Now take a look at: https://ibin.co/358Af1vA81HH.png
+21:04 < tushaar__> Simple solution would be to build a learning algorithm, that may be a straight line or a quadratic as depicted in the diagram. 
+21:05 < Aman_> yes..the quadratic is more accurate
+21:05 < tushaar__>  Here plotting a straight line would show us that the house can be sold for $160,000.
+21:05 -!- Myk_ [1b61c834@gateway/web/freenode/ip.27.97.200.52] has joined #wc-ml1
+21:05 < tushaar__> Infact at a later stage we decide to stick to the quadratic line rather than the straight line, then the house can be sold for $200,000.
+21:06 < Session> is the quadratic better as it covers more data points?
+21:06 < tushaar__> Irrespective of price, both these learning algorithms are fine examples of superviesed learning.
+21:06 < Aman_> and near to actual points as well..
+21:07 < Session> ok
+21:07 < tushaar__> No, we cannot decide anything.
+21:07 < tushaar__> Here the question wasn't to maximize the profits
+21:07 < tushaar__> it was to find a learning algorithm to satify the needs.
+21:08 < Aman_> okay..
+21:08 < tushaar__> another learning algorithm would be to join all the points and precisely find out the answer, in $
+21:08 < tushaar__> This indeed is an example of Supervised Learning, which here refers to the fact that we gave the algorithm to a data set in which the "right answers" were given.
+21:09 < tushaar__> Means that all we did was that we devised an algorithm that just computes an answer where few right answers are already given.
+21:10 < tushaar__>  That is, we were given a data set of houses in which for every example in this data set, we were given the right price (500 - $100,000, 1000 - $200,000).
+21:10 < tushaar__> So based on the given right answers we just devised an algorithm that gave us required results.
+21:10 < Myk_> like computing relationship between data and answer
+21:11 < tushaar__> Ofcourse
+21:11 < tushaar__> Some thing like you're already given the answer but in different form.
+21:12 < tushaar__> Any doubts up till now?
+21:12 < Session> no
+21:13 < tushaar__> Hey people respond!
+21:13 -!- Aman__ [2f086bf8@gateway/web/freenode/ip.47.8.107.248] has joined #wc-ml1
+21:13 < Aryanhimanshu> Ok till now
+21:13 < venkat> no
+21:13 < tushaar__> That's good.
+21:14 -!- hkagrawal1994 [2f086463@gateway/web/freenode/ip.47.8.100.99] has quit [Quit: Page closed]
+21:14 < tushaar__> Now pay attention towards our next problem: https://ibin.co/358AthiyKmyB.png
+21:14 < tushaar__> Reference: A malignant tumor is a tumor that is harmful and dangerous and a benign tumor is a tumor that is harmless.
+21:14 < bharath> no
+21:15 < tushaar__> In the figure, Y-yes and N-no.
+21:16 < tushaar__> Did all of you have a look at the Breast Cancer data-set?
+21:16 < Session> yes
+21:16 < epic7joe> yes
+21:16 < tushaar__> Now, tell me what do you observe from this data set?
+21:17 < tushaar__> also tell me what difference do you find between this data-set and the one presented earlier?
+21:17 < Session> chances of tumor being malignant increases with size
+21:17 -!- Aman__ [2f086bf8@gateway/web/freenode/ip.47.8.107.248] has quit [Ping timeout: 260 seconds]
+21:17 < epic7joe> as tumour size increases chance that it is malignant increses
+21:17 < tushaar__> Good observation but not quite what I was looking for
+21:18 -!- Rahul [2f086bf8@gateway/web/freenode/ip.47.8.107.248] has joined #wc-ml1
+21:18 < tushaar__> Answer to second question?
+21:18 -!- Rahul is now known as Guest81956
+21:18 < Session> y axis has ony 2 options
+21:19 < tushaar__> Good going.
+21:19 < tushaar__> And?
+21:19 < Myk_> they may be either maligant
+21:19 < Myk_> that means
+21:19 < Myk_> harmfull
+21:19 < Myk_> and dangerous
+21:19 < tushaar__> O...kay, so?
+21:20 < epic7joe> after a particular size chance that tumour is malignant is high
+21:20 < Myk_> if its not maligant
+21:20 < tushaar__> Not that
+21:20 < Session> tumors start getting malignant only after a certain size
+21:20 < tushaar__> Let us move on.
+21:20 < tushaar__> The second data set presented to you has only 2 possibilities.
+21:20 < tushaar__> right>
+21:21 < Session> yes
+21:21 < tushaar__> either malignant or benign.
+21:21 < Myk_> yes
+21:21 < tushaar__> while the first data set doesnot have restrictions
+21:21 < tushaar__> Hence the first one is a continuous data set
+21:22 < tushaar__> While the second one is a Discrete data set.
+21:22 < tushaar__> Agreed?
+21:22 < bharath> yes
+21:22 < Guest81956> Yes
+21:22 < epic7joe> yeah
+21:22 < tushaar__> Have a look at thid: https://ibin.co/358B4dEmugst.png
+21:22 < Session> is even the size of tumor discrete?
+21:22 < tushaar__>  circle denote benign tumors and cross denote malignant tumors. 
+21:22 < tushaar__> in the figure
+21:23 < tushaar__> nope @session
+21:23 < tushaar__> we are really not worried about the size of tumor, you see the green arrow?
+21:23 < Myk_> yes
+21:24 < Myk_> its like seprator
+21:24 < tushaar__> We really would like to estimate the possibilities of him/her having cancer
+21:24 < tushaar__> So, we really fixed our tumor size
+21:24 < tushaar__> We are only worried about our Y-axis values
+21:25 < tushaar__> Understood @session?
+21:25 < Session> yes
+21:25 < tushaar__> You guys agree that both the figures (the last two) are the same.
+21:25 < tushaar__> right?
+21:25 < Session> yes
+21:25 < Myk_> yes
+21:25 < epic7joe> yes
+21:26 < Aman_> yes
+21:26 < tushaar__> So, when we have discrete values we can represent them based on the attributes they depend on
+21:26 < tushaar__> like here it depends on the tumor size.
+21:26 < tushaar__> Any doubts so far>
+21:26 < tushaar__> *?
+21:26 < epic7joe> nope
+21:26 < Myk_> n
+21:26 < bharath> no
+21:27 < venkat> no
+21:27 < tushaar__> Lets get a bit technical here.
+21:27 < Aman_> nope
+21:27 < tushaar__> Example1 (Housing) is indeed a problem of Regression.
+21:27 < tushaar__> Example2 (Cancer) is a problem of Classification.
+21:28 < tushaar__> we can infer that Example-1 is clearly dealing with continuous values while Example-2 deals with discrete values (0 or 1). Simply put, the machine learning problems dealing with continuous values are technically, Regression Problems while the problems dealing with discrete values are Classification Problems (there may be more than 2 values).
+21:28 < tushaar__> Clear?
+21:29 < Session> yes
+21:29 < Myk_> yes
+21:29 < epic7joe> yes
+21:29 < bharath> yes
+21:29 < tushaar__> Good
+21:29 -!- Guest81956 [2f086bf8@gateway/web/freenode/ip.47.8.107.248] has quit [Ping timeout: 260 seconds]
+21:29 < tushaar__> Now going back to our problem, note that our problem is one-attribute based
+21:30 < tushaar__> we need not have one-attribute always, we can have more than one
+21:30 < tushaar__> have a look: https://ibin.co/358BH7XR0CsV.png
+21:31 < tushaar__> In the diagram, you can clearly see that the cancer tendency depends both on age as well as tumor size. 
+21:31 < tushaar__> agreed?
+21:31 < Session> yes
+21:32 < epic7joe> yeah
+21:32 < Myk_> yes
+21:32 < bharath> yes
+21:32 < ganesh_> yes
+21:32 < tushaar__> Now I want to determine what the yellow dot falls under?
+21:33 < tushaar__> Say he has cancer.
+21:33 < tushaar__> How to create a model that determines such cases?
+21:33 < tushaar__> Any ideas?
+21:34 < tushaar__> circle denote benign tumors and cross denote malignant tumors. 
+21:35 < Myk_> with the help of  attributes.!!
+21:36 < tushaar__> More precisely as such: https://ibin.co/358BUXua06N6.png
+21:36 < tushaar__> Take a look.
+21:36 < tushaar__> In order to predict we can draw a straight line that seperates the two and we may say that the probability of having breast cancer is more above the line.
+21:37 < tushaar__> Got it?
+21:37 < Aman_> yes..
+21:37 < Myk_> more...?
+21:37 < epic7joe> yeah
+21:37 < Myk_> they are two types of cancer na ?
+21:37 < bharath> yes
+21:37 < tushaar__> more...? as in
+21:38 < Myk_> u said probability would be more above the line
+21:38 < tushaar__> Yeah, can you see that there is a circle above the line
+21:38 < Myk_> yes
+21:38 < tushaar__> and a cross below the line
+21:38 < Myk_> yes
+21:39 < tushaar__> if cross is mailgnant, what is the probability of breast cancer occurance above the line?
+21:39 < tushaar__> is ig more or less?
+21:39 < tushaar__> *it
+21:39 < Session> more
+21:39 < tushaar__> Understand?
+21:39 < Myk_> but the other one is also a type of Brest cancer..
+21:40 < tushaar__> No, it is a type of tumor, that is harmless.
+21:40 < Aman_> but above line probability of circle is very less...
+21:40 < Session> no..other one is just a tumor
+21:40 < tushaar__> Got it?
+21:40 < Myk_> ohh
+21:40 < tushaar__> Now, So, for each of these problems, they should be treated as a classification problem, or as a regression problem.
+21:40 < tushaar__> Agree?
+21:40 < Aman_> yes..less harmfull and more harmfull..ok..
+21:41 < Myk_> circle is tumor and cross is cancer
+21:41 < Myk_> ?
+21:41 < tushaar__> Yeah (not really)
+21:41 < tushaar__> Reference: A malignant tumor is a tumor that is harmful and dangerous and a benign tumor is a tumor that is harmless.
+21:41 < Myk_> okay
+21:41 < tushaar__> circle denote benign tumors and cross denote malignant tumors. 
+21:41 < Myk_> got it
+21:41 < Aman_> ;-)
+21:42 < tushaar__> Cool now move on to: So, for each of these learning problems, they should be treated as a classification problem, or as a regression problem.
+21:42 < tushaar__> Agree?
+21:42 < Myk_> yess
+21:43 < tushaar__> Because data is either discrete or continuous.
+21:43 < Aman_> okay..
+21:43 < tushaar__> Now, time for some brain-food:
+21:43 < tushaar__> Problem 1: You have a large inventory of identical items. You want to predict how many of these items will sell over the next 3 months.
+21:43 < tushaar__> Problem 2: You’d like software to examine individual customer accounts, and for each account decide if it has been hacked/compromised. 
+21:44 < tushaar__> I want all of you to answer to both the questions as to which model is to be used?
+21:44 < tushaar__> Regression or Classification?
+21:44 < Myk_> first one is regression 
+21:44 < Myk_> second is classification 
+21:44 < ganesh_> second is a classification
+21:45 < epic7joe> 1- regression
+21:45 < Session> 1 - regression
+21:45 < epic7joe> 2 - classification
+21:45 < Session> 2 - classification
+21:45 < Aman_> yes...second in classification..
+21:45 < tushaar__> Perfect
+21:45 < tushaar__> I hope you guys know why.
+21:46 < Myk_> yes 
+21:46 < bharath> yes
+21:46 < Session> yes
+21:46 < Aman_> yeah
+21:46 < tushaar__> 1 - Continuous data and 2 - Discrete data
+21:46 < ganesh_> bcoz second has discrete data...i think
+21:46 < tushaar__> Correct @ganesh
+21:47 < ganesh_> ok
+21:47 < Myk_> first have same items
+21:47 < tushaar__> Now, have you wondered, what unsupervised learning is?
+21:47 < tushaar__> @Myk Elaborate?
+21:48 < tushaar__> I think you might have misunderstood.
+21:48 < ganesh_> so what is being continuous in 1st
+21:49 < Myk_> i think its like
+21:49 < Session> number of items to be sold is y axis and time taken is x axis i think
+21:49 < Myk_> on the basis of attributes 
+21:49 < Myk_> it will tell us weather 
+21:49 < tushaar__> See, on a particular day, in those 3 months you cannot say as to how many goods will be sold, can you?
+21:50 < Myk_> it will tell answer on the basis of attributes
+21:50 < Myk_> here we are not providing answer
+21:50 < tushaar__> Correct @Myk
+21:50 < Myk_> 😊 
+21:51 < tushaar__> But can you tell me exactly tell me how many products are sold exactly on day-n 
+21:51 < tushaar__> we cannot. While in case 2 - it is either hacked or compromised.
+21:52 < tushaar__> Get it?
+21:52 < ganesh_> yes
+21:52 < epic7joe> yeah
+21:52 < tushaar__> Cool, let us see, Unsupervised learning.
+21:53 < tushaar__> Take a look at: https://ibin.co/358BfmmYsYeB.png
+21:53 -!- Aman_ [2f086bf8@gateway/web/freenode/ip.47.8.107.248] has quit [Quit: Page closed]
+21:53 < tushaar__> Find any difference between the previously sent images and this one>
+21:53 < tushaar__> *?
+21:54 < Myk_> here we dont have any type 
+21:54 < Myk_> only
+21:54 < Myk_> circles
+21:54 < tushaar__> You got it.
+21:54 < tushaar__> Unsupervised learning is a type of machine learning algorithm used to draw inferences from datasets consisting of input data without labeled responses. The most common unsupervised learning method is cluster analysis, which is used for exploratory data analysis to find hidden patterns or grouping in data.
+21:55 < tushaar__> Got it?
+21:55 < Myk_> without labeled response means
+21:56 < tushaar__> You have no clue as to what data set has been provided to you, the only inference that can be drawn from these are patterns and clusters. 
+21:57 < Myk_> okay
+21:57 < tushaar__> You donot have the foggiest idea of X1 and X2.
+21:57 < tushaar__> Got it?
+21:57 -!- aryanhimanshu_ [7cfd08e7@gateway/web/freenode/ip.124.253.8.231] has joined #wc-ml1
+21:57 < Myk_> yes
+21:57 -!- Aryanhimanshu [a995adf4@gateway/web/freenode/ip.169.149.173.244] has left #wc-ml1 []
+21:57 < tushaar__> Now the only inference that can be drawn from this is: https://ibin.co/358BstnXZfOd.png
+21:58 < tushaar__> Have a look, do you guys agree?
+21:58 < Myk_> ues
+21:58 < Myk_> yes
+21:58 < Myk_> bt suppose if we label these attributes 
+21:58 < Session> yes
+21:58 < tushaar__> Hence, we categorize this data-set by clustering it into 2 groups or clusters (here).
+21:59 < Myk_> what difference it will make
+21:59 < tushaar__> We need to figure out the relation between X1 and X2 to label them.
+21:59 < tushaar__> Get it?
+22:00 < Myk_> if we had  a relation and label than also
+22:00 < Myk_> we can only conclude about cluster
+22:00 < Myk_> here
+22:00 < tushaar__> Yes here
+22:00 < tushaar__> only here
+22:00 < Myk_> so here label doesn't matter
+22:00 < tushaar__> Not always it is the case
+22:01 < tushaar__> Here
+22:01 < Myk_> okay
+22:01 < tushaar__> But generally if you have labels and then you can build a model like the first example
+22:01 < tushaar__> get it?
+22:02 < tushaar__> Hence here we categorize this data-set by clustering it into 2 groups or clusters (here).
+22:02 < Myk_> 👍 
+22:02 < Session> okay
+22:02 < tushaar__> Cool, Now, do you guys want me to start Regression and Linear Regression?
+22:03 < tushaar__> Or shall we stop here?
+22:03 < aryanhimanshu_> yaa go on
+22:03 < Myk_> i thinks thats enough for today
+22:03 < bharath> we shall stop here
+22:04 < ganesh_> yes we should stop here
+22:04 < tushaar__> As you wish, we'll pick from here in the following session.
+22:04 < Myk_> 😃 
+22:04 < tushaar__> References: Tom M. Mitchell, Machine Learning, McGraw-Hill, 1997
+22:04 < tushaar__> With this we will wind up our first session and hope you guys had fun. We’ll look at Linear Regression in one variable, Gradient Descent and Logistic Regression in the next session. Go through the concepts for better understanding.
+22:05 < tushaar__> Along with Regression.
+22:05 -!- bharath [75c7fd42@gateway/web/freenode/ip.117.199.253.66] has quit [Quit: Page closed]
+22:05 < Myk_> yes
+22:05 < Session> cool
+22:05 < Myk_> please share the log in whatsapp grp
+22:05 < tushaar__> Cool, then ping me if any queries, tushaargvsg45@gmail.com
+22:05 < tushaar__> Sure @Myk
+22:06 < Myk_> i got disconnected..so i missed some part
+22:06 < Myk_> okay thanks
+22:06 < tushaar__> End of Session-01.
+--- Log closed Mon Dec 12 22:06:31 2016
