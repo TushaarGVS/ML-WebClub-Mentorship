@@ -1,18 +1,18 @@
-20:41 < tushaar__> Okay first of all, we'll discuss what ml is?
+20:40 <tushaar__> Welcome to the Web-Club's Winter Mentorship Programme 2016.
+20:41 <tushaar__> Okay first of all, we'll discuss what ML is?
 20:41 < tushaar__> Anyone?
 20:41 < tushaar__> Agenda: 
 20:42 < tushaar__> Basics of ML.
-20:42 < tushaar__> Supervised Learning (Unsupervised Learning also).
-20:42 < tushaar__> Regression and Linear Regression.
+20:42 < tushaar__> Supervised Learning (Unsupervised Learning, Reinforced Learning also).
+20:42 < tushaar__> Regression and Linear Regression with one variable.
 20:42 -!- Aman_ [2f086bf8@gateway/web/freenode/ip.47.8.107.248] has joined #wc-ml1
-20:42 < tushaar__> We will be covering these 3 topics in today’s session
+20:42 < tushaar__> We will be covering these 3 topics in today’s session.
 20:43 < tushaar__> No one? 
 20:43 < tushaar__> People respond. What is ML?
 20:43 < Myk_> no idea.
 20:43 < tushaar__> Okay
-20:43 < tushaar__> echnically, it is a type of artificial intelligence (AI) that gives computers the ability to learn without being explicitly programmed.
+20:43 < tushaar__> Technically, it is a type of artificial intelligence (AI) that gives computers the ability to learn without being explicitly programmed.
 20:43 < Myk_> is it related with AI
-20:43 < tushaar__> *Technically
 20:43 < tushaar__> Absolutely.
 20:44 < tushaar__> A more formal way of saying the same would be:
 20:45 < tushaar__> A computer program is said to learn from experience E with respect to some class of tasks T and performance P, if its performance at tasks in T, as measured by P, improves with experience E. 
@@ -25,17 +25,17 @@
 20:47 < tushaar__> I program it.
 20:47 -!- Aryanhimanshu [a995adf4@gateway/web/freenode/ip.169.149.173.244] has joined #wc-ml1
 20:48 < Aman_> okay..
-20:48 < tushaar__> instead, if my computer itself decides the best alternative from the past records or experience
-20:48 < tushaar__> it is called machine learning.
+20:48 < tushaar__> Instead, if my computer itself decides the best alternative from the past records or experience
+20:48 < tushaar__> It is called machine learning.
 20:49 < Aman_> ok..fine..
-20:49 < tushaar__> the performance or probability is what that matters to us
+20:49 < tushaar__> The performance or probability is what that matters to us
 20:49 < tushaar__> Consider the Example: Playing checkers.
 20:49 < tushaar__> E = the experience of playing many games of checkers.
 20:50 < tushaar__> T = the task of playing checkers.
 20:50 < tushaar__> P = the probability that the program will win the next game.
 20:50 < tushaar__> clear? @Aman?
 20:50 < Aman_> yes yes... :)
-20:50 < tushaar__> cool
+20:50 < tushaar__> Cool
 20:50 < tushaar__> anyone any doubts?
 20:51 < Aman_> no..not till now
 20:51 < Aryanhimanshu> I missed the beginning part 
@@ -170,10 +170,9 @@
 21:26 < Aman_> yes
 21:26 < tushaar__> So, when we have discrete values we can represent them based on the attributes they depend on
 21:26 < tushaar__> like here it depends on the tumor size.
-21:26 < tushaar__> Any doubts so far>
-21:26 < tushaar__> *?
+21:26 < tushaar__> Any doubts so far?
 21:26 < epic7joe> nope
-21:26 < Myk_> n
+21:26 < Myk_> no
 21:26 < bharath> no
 21:27 < venkat> no
 21:27 < tushaar__> Lets get a bit technical here.
@@ -209,19 +208,18 @@
 21:36 < tushaar__> In order to predict we can draw a straight line that seperates the two and we may say that the probability of having breast cancer is more above the line.
 21:37 < tushaar__> Got it?
 21:37 < Aman_> yes..
-21:37 < Myk_> more...?
+21:37 < Myk_> more?
 21:37 < epic7joe> yeah
 21:37 < Myk_> they are two types of cancer na ?
 21:37 < bharath> yes
-21:37 < tushaar__> more...? as in
+21:37 < tushaar__> more? as in
 21:38 < Myk_> u said probability would be more above the line
 21:38 < tushaar__> Yeah, can you see that there is a circle above the line
 21:38 < Myk_> yes
 21:38 < tushaar__> and a cross below the line
 21:38 < Myk_> yes
 21:39 < tushaar__> if cross is mailgnant, what is the probability of breast cancer occurance above the line?
-21:39 < tushaar__> is ig more or less?
-21:39 < tushaar__> *it
+21:39 < tushaar__> is it more or less?
 21:39 < Session> more
 21:39 < tushaar__> Understand?
 21:39 < Myk_> but the other one is also a type of Brest cancer..
@@ -334,11 +332,12 @@
 22:02 < tushaar__> Cool, Now, do you guys want me to start Regression and Linear Regression?
 22:03 < tushaar__> Or shall we stop here?
 22:03 < aryanhimanshu_> yaa go on
-22:03 < Myk_> i thinks thats enough for today
+22:03 < Myk_> i think that's enough for today
 22:03 < bharath> we shall stop here
 22:04 < ganesh_> yes we should stop here
 22:04 < tushaar__> As you wish, we'll pick from here in the following session.
 22:04 < Myk_> 😃 
+22:04 < tushaar__> Before we wind up, take a look at: https://s27.postimg.org/7v3qhp2tf/image.png.
 22:04 < tushaar__> This is Unsupervised Learning because we're not telling the algorithm in advance that these are type 1 people, those are type 2 persons, those are type 3 persons and so on and instead what were saying is yeah here's a bunch of data. 
 22:04 < tushaar__> I don't know what's in this data. I don't know who's and what type. 
 22:04 < tushaar__> I don't even know what the different types of people are, but can you automatically find structure in the data from the you automatically cluster the individuals into these types that I don't know in advance? 
