@@ -1,0 +1,488 @@
+21:14 < tushaar_> Sorry for the delay.
+21:14 < tushaar_> We'll get started.
+21:14 < tushaar_> Anyone yet to join?
+21:14 -!- tushaar_ changed the topic of #wc-ml1 to: ML - Session 02
+21:15 < tushaar_> Guys?
+21:15 < tushaar_> Respond!
+21:15 -!- srk_ [0825ed85@gateway/web/freenode/ip.8.37.237.133] has joined #wc-ml1
+21:15 < tushaar_> Shall we start?
+21:15 < Myk_> no idea.!
+21:15 < bbk_> yes
+21:16 < tushaar_> Okay.
+21:16 < Myk_> yes
+21:16 < joe___> yeah
+21:16 < tushaar_> Today, we'll look at Regression, Linear Regression and Gradient Descent (Hopefully).
+21:17 < tushaar_> Before moving forward, let's recap!
+21:17 < tushaar_> ML: The type of AI which gives computers the ability to learn without explicitly being programmed.
+21:17 < tushaar_> Can you tell me the types of learning algorithms @ joe
+21:18 < tushaar_> joe?
+21:19 < joe___> supervised, unsupervised
+21:19 < tushaar_> Good.
+21:19 < tushaar_> There's one more - Reinforced - used in google alpha go and other chess simulators.
+21:19 < tushaar_> It's not important, I'll leave it to self-study.
+21:20 < aryanhimanshu> ok
+21:20 < tushaar_> Consider the example of classifying a mail as ‘Spam’ or ‘Not-Spam’.
+21:20 < tushaar_> Now how would you classify it?
+21:20 < Myk_> unsupervised 
+21:20 < Myk_> sry
+21:20 < tushaar_> Not that. 
+21:20 < joe___> classification
+21:20 < tushaar_> An offer mail from Myntra.com (Say) would be regarded as ‘Spam’ while an e-mail from your friend would be regarded as ‘Not-Spam’ . 
+21:21 < tushaar_> Correct @joe.
+21:21 < Myk_> yes
+21:21 < aryanhimanshu> classification
+21:21 < tushaar_> Although that was one of my questions :)
+21:21 < tushaar_> The computer is made to analyze these characteristics, and it ‘learns’ them, so the next time it receives an e-mail, it’ll do the classification for you.
+21:21 < Myk_> 😁 
+21:21 < tushaar_> Agree?
+21:21 < Shivan> Yes
+21:22 < Myk_> yes
+21:22 < bbk_> yes
+21:22 < aryanhimanshu> yes
+21:22 < Guest32030> yes
+21:22 < joe___> yeah
+21:22 < tushaar_> Now, if you remember, in the last session I gave you the definition of ML with E, T, P.
+21:22 < tushaar_> Can someone point out these in this case?
+21:23 < Myk_> t is to check spam
+21:23 < tushaar_> E = Experience, T = Task, P = Performance.
+21:23 < tushaar_> Correct @Myk, What about P?
+21:23 < Myk_> e would be previous classification 
+21:23 < tushaar_> E = Experience :: Experience of classifying many e-mails.
+21:24 < tushaar_> Correct @Myk.
+21:24 < Myk_> p would be
+21:24 < Myk_> how accurately 
+21:24 < Myk_> it classify
+21:24 < tushaar_> P = Performance :: Probability of the mail being classified correctly.
+21:25 < tushaar_> So, now is this Supervised or not?
+21:25 < Guest32030> Yes
+21:25 < bbk_> it is supervised
+21:25 < Myk_> no
+21:25 < Shivan> Yes
+21:25 < aryanhimanshu> it can be both 
+21:25 < aryanhimanshu> i guess
+21:25 < tushaar_> All other than 'Yes', refer to this and put forward your views:
+21:26 < tushaar_> This is a case of Supervised learning because we have ‘trained’ the algorithm based on an existing, labeled data-set and we expect it to classify some new data based on the given data-set.
+21:26 < tushaar_> And 'Yes' is the correct answer.
+21:26 < Myk_> okayy 
+21:26 < aryanhimanshu> okayyy
+21:26 < tushaar_> Any doubts up till now?
+21:27 < Myk_> no
+21:27 < aryanhimanshu> all clear
+21:27 < Shivan> No
+21:27 < tushaar_> 2 – Types: Regression (Continuous) and Classification (Discrete).
+21:27 < bbk_> no
+21:27 < tushaar_> Supervised: Eg:  Housing price prediction, The mail data-set, the tumor data-set etc.
+21:27 < tushaar_> Now, unsupervised learning:
+21:28 < tushaar_> We donot tell the algorithm in advance as to what the data-set actually is, we just know that we have a bunch of data and nothing else is known.
+21:28 < Shivan> Ok
+21:28 < tushaar_> we have no labels nor have we ‘trained’ the data-set. Only thing we can infer from such data-sets are clusters and patterns.
+21:29 < tushaar_> Eg: Clusterings, Genetics etc. 
+21:29 < tushaar_> Agreed? Any queries?
+21:29 < Myk_> agree
+21:29 < joe___> agreed
+21:29 < bbk_> yes
+21:29 < srk_> clusterings??
+21:30 < tushaar_> That being said, let's move on to Regression.
+21:30 < tushaar_> Formation of patterns and Clusters @Srk
+21:31 < tushaar_> Now, @Myk give me the idea of Regression (What we had discussed in the last session)
+21:32 < Myk_> its like a continuous data we have given ..and based in that we need to find further answers
+21:32 < Myk_> on*
+21:33 < tushaar_> That said in a more precise form would be: 
+21:33 < tushaar_> Regression allows us to model, mathematically, the relation between two or more variables, using very simple algebra.
+21:33 < tushaar_> I hope all of you remember the Housing price prediction.
+21:34 < Myk_> yes
+21:34 < joe___> yeah
+21:34 < tushaar_> In this session, we are going to work with only two variables – Independent Variable and Dependent Variable. 
+21:34 -!- Nishant_ [2f086e9c@gateway/web/freenode/ip.47.8.110.156] has joined #wc-ml1
+21:35 < tushaar_> Now, for those who didn't attend the last session, have a look:
+21:35 < tushaar_> https://ibin.co/35MZWE4kNhZU.png
+21:36 < tushaar_> Now, how do we say that the model we designed is a good one?
+21:36 < tushaar_> Any idea?
+21:36 < Myk_> by precision
+21:36 < tushaar_> Always remember: When we are talking of how ‘good’ a regression model is, comparing to another particular model is indeed what we are looking for. 
+21:36 < Myk_> !
+21:37 < tushaar_> I'll explain the above statement with an example in some time.
+21:37 < srk_> ok
+21:37 < tushaar_> So, hold your horses.
+21:37 < tushaar_> Let us now define linear regression to be the  type of regression that fits (or) tries to fit a straight line (layman terms) through the data-set (remember the Housing price algorithm)
+21:37 < Shivan> Ok
+21:38 -!- gpatel [2ff7df12@gateway/web/freenode/ip.47.247.223.18] has joined #wc-ml1
+21:38 < aryanhimanshu> ok
+21:38 < tushaar_> so that the variance (the measure of how scattered the data-points are from a given reference) is minimum.
+21:38 < tushaar_> Go to the housing price prediction.
+21:39 < tushaar_> In this problem, we derived a linear relationship between the variables of the data-set.
+21:39 < tushaar_> Correct?
+21:39 < joe___> yes
+21:39 < Shivan> Yes
+21:39 < Myk_> yes
+21:39 < Nishant_> Yes
+21:39 < tushaar_> Any Doubts?
+21:40 < tushaar_> If none, then I have a question.
+21:40 < tushaar_> So, is that a 'no'?
+21:40 < Nishant_> Maybe🤔
+21:41 < tushaar_> I'm wondering if the quadratic also falls under linear regression or not? Can you help me out?
+21:41 < tushaar_> I'm sure Straight line falls into linear category.
+21:42 < Nishant_> But quadratic hw?
+21:42 < tushaar_> So, tell me if quadratic falls under linear regression or not? Respond!
+21:42 < venkat> yes it does
+21:42 < Myk_> yes may be
+21:42 < Myk_> some times
+21:42 < Myk_> because u said
+21:42 < Myk_> that fit or tries to fit
+21:42 < tushaar_> All, those other than 'no' elaborate!
+21:43 < Shivan> It may fit but variance is less in straight line
+21:43 -!- bbk_ [674b43a5@gateway/web/freenode/ip.103.75.67.165] has quit [Ping timeout: 260 seconds]
+21:44 < tushaar_> When I say tries to fit, it means that it fits atleast the minimum number of points.
+21:44 < joe___> then quadratic may not be linear regression
+21:44 < tushaar_> I'm afraid all of you are incorrect with explanations.
+21:45 < tushaar_> But the answer is 'Yes'.
+21:45 < tushaar_> I'll clarify in a sec.
+21:45 < tushaar_> Before we clarify that, let’s have a look at few things:
+21:45 < tushaar_> Linear regression - 2 types: Simple, Multiple.
+21:46 < tushaar_> Can you guess the meaning @venkat
+21:46 < venkat> simple is one variable dependent
+21:47 < tushaar_> Like 2D space?
+21:47 -!- Myk_ [2ff749fd@gateway/web/freenode/ip.47.247.73.253] has quit [Ping timeout: 260 seconds]
+21:47 -!- bbk_ [674b43a5@gateway/web/freenode/ip.103.75.67.165] has joined #wc-ml1
+21:47 < aryanhimanshu> 3d space
+21:47 < aryanhimanshu> ??
+21:47 < tushaar_> Not 3D.
+21:47 < tushaar_> Simple linear regression examines the linear relationship between two continuous variables: one response (y) and one predictor (x).
+21:48 < tushaar_> When the two variables are related, it is possible to predict a response value from a predictor value. 
+21:48 < tushaar_> Agree?
+21:48 < Shivan> Yes
+21:49 < tushaar_> Regression provides the line that "best" fits the data.
+21:49 < Nishant_> Yes
+21:49 < tushaar_> This line can then be used to: Examine how the dependent variable changes as the independent variable changes and to predict the value of a dependent variable (y) for any independent variable (x).
+21:50 < tushaar_> Yi = mXi + c (Straight Line)
+21:50 < tushaar_> Any queries?
+21:50 -!- venkat_ [75dd674b@gateway/web/freenode/ip.117.221.103.75] has joined #wc-ml1
+21:51 -!- venkat [2bf6ee37@gateway/web/freenode/ip.43.246.238.55] has quit [Ping timeout: 260 seconds]
+21:51 < tushaar_> I can't move further without response. Guys, respond when asked to.
+21:52 < joe___> no queries
+21:52 < Shivan> No
+21:52 < bbk_> no
+21:52 < tushaar_> Cool, moving on!
+21:52 < tushaar_> Multiple linear regression = 3D.
+21:52 < tushaar_> Plane, Parabola, etc.
+21:53 < tushaar_> Multiple linear regression examines the linear relationships between one continuous dependent variable and two or more independent variables. 
+21:53 < tushaar_> Thus, Yi = m1X1i + m2X2i + c (plane) and Yi = m1Xi + m2Xi^2 (Parabola) fall under Multiple linear regression.
+21:53 -!- Myk_ [2ff749fd@gateway/web/freenode/ip.47.247.73.253] has joined #wc-ml1
+21:54 < Myk_> hey can u please paste the chat..i got disconnected  bcz of internet connection 
+21:55 < tushaar_> You can refer to logs, later.
+21:55 < Myk_> okay
+21:56 -!- srk_ [0825ed85@gateway/web/freenode/ip.8.37.237.133] has quit [Ping timeout: 260 seconds]
+21:56 < tushaar_> @Shivan can you guess as to why, Yi = m1Xi + m2Xi^2 (Parabola) falls under linear regression?
+21:56 < tushaar_> Inspite of holding a square term?
+21:57 < Shivan> Because there are multiple variables 
+21:57 < tushaar_> Ofcourse, I was expecting something else.
+21:58 < tushaar_> Anyway.
+21:58 < tushaar_> This is because the term m2Xi^2 can surely be expressed as m2T where T = Xi^2. 
+21:59 < tushaar_> So, now, isn't m2T a variable of power 1?
+21:59 < aryanhimanshu> yes it is
+21:59 < tushaar_> Now, we can say that both the straight line and quadratic functions fall under linear regression but, straight line under ‘Simple’ and quadratic under ‘Multiple’.
+22:00 < tushaar_> Does that answer the question, I had asked?
+22:00 < Shivan> Yes
+22:00 < tushaar_> So, any doubts so far?
+22:01 < Myk_> yes
+22:01 < Myk_> the equation of parabola
+22:01 < tushaar_> Yes? What about it?
+22:02 < tushaar_> Yi = m1Xi + m2Xi^2
+22:03 < tushaar_> @Myk? 
+22:03 < Myk_> m1,m2 are constants .?
+22:03 < Myk_> or slopes
+22:03 < tushaar_> Yes, Slopes.
+22:03 < Myk_> what would be the value of m1 and m2
+22:04 < aryanhimanshu> So any equation of the form Y = b o + b1X1 + b2X^2 + ... + bkX^k is a linear regression??
+22:04 < tushaar_> Ofcourse.
+22:04 < Myk_> isnt it like y=ax^2+bx+c
+22:05 < Myk_> where a and b are constants
+22:05 < tushaar_> Any equation, my point wasn't that.
+22:05 < Myk_> @tushaar.?
+22:05 < tushaar_> Y = ae^(bx)U = Non-Linear; U: Error Term.
+22:06 < tushaar_> @Myk my point was to prove that, an equation with square term is also linear.
+22:06 < tushaar_> Understand?
+22:06 < Myk_> okay
+22:06 < bbk_> so any polynomial is linear?
+22:06 < bbk_> every*
+22:07 -!- venkat_ [75dd674b@gateway/web/freenode/ip.117.221.103.75] has quit [Ping timeout: 260 seconds]
+22:07 < tushaar_> I haven't come across exceptions, but don't take my word for it @bbk
+22:08 < bbk_> ok
+22:08 < tushaar_> Are we on the same page, guys?
+22:08 < bbk_> yes
+22:08 < aryanhimanshu> yes
+22:08 < Shivan> Yes
+22:09 < Myk_> yes
+22:09 < tushaar_> Cool.
+22:09 < tushaar_> Now, for the most important part of the session.
+22:10 < tushaar_> Simple Linear Regression: Consider the following example, “Tips for Service”
+22:10 < tushaar_> Let us assume that you are a very business minded waiter at a nice restaurant.
+22:10 < tushaar_> “Tips” are a very important part of the waiter’s pay.
+22:11 -!- venkat [75c0ed19@gateway/web/freenode/ip.117.192.237.25] has joined #wc-ml1
+22:11 < tushaar_> Most of the time the dollar amount of tip is related to the dollar amount of of the total bill. 
+22:11 < tushaar_> So can you tell me @Guest as to what the dependent and what the independent variables would be?
+22:12 < aryanhimanshu> tip is dependent
+22:12 < Myk_> and bill is independent 
+22:12 < aryanhimanshu> total bill independent
+22:12 < tushaar_> Correct.
+22:13 < tushaar_> As the waiter, you would like to develop a model that’ll allow you to make a prediction about what amount of tip to expect for any given bill amount.
+22:13 < Shivan> Yes
+22:14 < tushaar_> In order to generate a learning algorithm, what else do you need?
+22:14 < tushaar_> @joe
+22:14 < joe___> data set?
+22:15 < tushaar_> Perfect.
+22:15 < tushaar_> We need a training data-set.
+22:15 < tushaar_> Therefore one evening, you collect data for 6 meals.
+22:15 < tushaar_> As, it goes that way, you realize that only data for tip amount has been collected and not the meal amount.
+22:15 < tushaar_> Meal 1: 5$
+22:15 < tushaar_> Meal 2: 17$
+22:15 < tushaar_> Meal 3: 11$
+22:16 < tushaar_> Meal 4: 8$
+22:16 < tushaar_> Meal 5: 14$
+22:16 < tushaar_> Meal 6: 5$
+22:16 < tushaar_> Is the question clear up till now?
+22:16 < aryanhimanshu> yup
+22:16 < joe___> yeah
+22:17 < bbk_> yep
+22:17 < tushaar_> You wanna note that the independent variable is missing.
+22:17 < Shivan> Yes
+22:17 < tushaar_> Which makes this a case of Simple linear regression with "one" variable.
+22:17 < Myk_> ye
+22:18 < tushaar_> How might you predict the tip amount for future meals using only this data? 
+22:18 -!- Bbk__ [674b43a5@gateway/web/freenode/ip.103.75.67.165] has joined #wc-ml1
+22:18 < tushaar_> Take a look: https://ibin.co/35MSvX5EkS1i.png
+22:19 < aryanhimanshu> may be sort them first
+22:19 -!- Nishant_ [2f086e9c@gateway/web/freenode/ip.47.8.110.156] has quit [Quit: Page closed]
+22:19 < tushaar_> Sort? Impressive.
+22:19 < tushaar_> Keep talking.
+22:20 < aryanhimanshu> and then predict an equation 
+22:20 < tushaar_> Any other approach?
+22:20 < tushaar_> @Anyone?
+22:21 < Shivan> By calculating average 
+22:21 < tushaar_> Amazing @Shivan
+22:21 -!- bbk_ [674b43a5@gateway/web/freenode/ip.103.75.67.165] has quit [Ping timeout: 260 seconds]
+22:21 < aryanhimanshu> i.e 10
+22:21 < tushaar_> Take a look: https://s29.postimg.org/cftjdx7fr/ML_Session_02_02.png
+22:22 < aryanhimanshu> average 
+22:22 -!- Myk_ [2ff749fd@gateway/web/freenode/ip.47.247.73.253] has quit [Ping timeout: 260 seconds]
+22:22 < tushaar_> The most we can figure out about the Meal #7, using only one variable is using mean = (5+17+11+8+14+5)/6 = 10$.
+22:22 < tushaar_> And this 10$ is the line of best fit (as shown).
+22:23 < tushaar_> Are we cool, till now?
+22:23 < Shivan> Yes
+22:23 < Bbk__> Yes
+22:23 < aryanhimanshu> yes
+22:23 < tushaar_> Obviously, we see that none of our tip values actually fall on the 10$ estimate, but this is the best estimate possible.
+22:23 < tushaar_>  So, variability in the tip amounts can only be explained by the tips themselves.
+22:23 < joe___> will average be always the line of best fit?
+22:24 < tushaar_> If we have only one variable, it is the only way to decide, i.e, it'll be the line of best fit, always @joe.
+22:24 < joe___> K
+22:25 < tushaar_> You'll figure it out when we prove the correctness of the above model.
+22:25 < tushaar_> Any more doubts?
+22:26 < Shivan> No
+22:26 < tushaar_> As stated earlier: Goodness of fit for this line (or) Correctness of this model is to be discussed
+22:26 < tushaar_> Some points are above and some points are below the line.
+22:27 < tushaar_> Inorder to measure the goodness of this model we have to compute the degree of scattering of each point with respect to this line.
+22:27 < tushaar_> @bbk, can you tell me as to how this can be achieved using the mean that we found?
+22:28 < aryanhimanshu> calculate |fit-Xi|/n
+22:29 < Bbk__>  By taking the diff i guess
+22:29 -!- joe___ [67c23647@gateway/web/freenode/ip.103.194.54.71] has quit [Ping timeout: 260 seconds]
+22:29 < tushaar_> What is fit?
+22:29 < aryanhimanshu> 10 in this case
+22:29 < tushaar_> What does |fit - Xi| signify?
+22:29 < aryanhimanshu> mean
+22:30 < tushaar_> Okay so, |datapoint - mean|
+22:30 -!- Myk_ [2ff749fd@gateway/web/freenode/ip.47.247.73.253] has joined #wc-ml1
+22:30 < tushaar_> right @aryan?
+22:30 < aryanhimanshu> i meant summation of (mean - Yi) for i 1 to 6
+22:31 < aryanhimanshu> divided by 6
+22:31 < tushaar_> Yeah, what does that quantity stand for?
+22:31 < tushaar_> what is |mean - Yi|?
+22:31 -!- bbk_ [674b43a5@gateway/web/freenode/ip.103.75.67.165] has joined #wc-ml1
+22:32 < Shivan> Hi 
+22:32 < tushaar_> @Everyone, aryan is correct and all of you think of the significance of |mean - Yi|
+22:32 < aryanhimanshu> that should give average of variation
+22:32 < tushaar_> Okay, what I was looking for, was:
+22:33 < Shivan> Divin
+22:33 -!- Guest32030 [744a5870@gateway/web/freenode/ip.116.74.88.112] has quit [Quit: Page closed]
+22:33 < tushaar_> It is the distance (b/w mean line and data point) of line drawn perpendicular to X-axis.
+22:33 < aryanhimanshu> skewness
+22:33 < Shivan> Why dividing by 6
+22:34 < tushaar_> We'll get to that later @Shivan.
+22:34 < Shivan> Ok
+22:34 < tushaar_> Did all of you understand the Significance of |mean - Yi|
+22:35 < Shivan> Yes
+22:35 < bbk_> yes
+22:35 < tushaar_> So we measure the distance of each data point from the mean, which is similar to Standard Deviation (Statistics)
+22:35 < tushaar_> The deviatons are called “Residuals” or “Error” as it is the amount by which the value deviates from the mean.
+22:35 < tushaar_> Have a look: https://s29.postimg.org/pz1ywi893/ML_Session_02_03.png
+22:36 < tushaar_> Do all of you understand the meaning of (mean - Yi)? It is very important that you do.
+22:36 < bbk_> how will we say the value is less or more if we take mod?
+22:37 < tushaar_> That's why we don't. 
+22:37 < tushaar_> For now it is just (mean - Yi).
+22:37 -!- Bbk__ [674b43a5@gateway/web/freenode/ip.103.75.67.165] has quit [Quit: Page closed]
+22:37 < tushaar_> We'll see "mod" later!
+22:38 < bbk_> ok
+22:38 < tushaar_> Any questions?
+22:38 < Shivan> Ok
+22:38 < tushaar_> So, moving further,
+22:38 < tushaar_> Now, add up the residuals above the mean, i.e, +12, while below the line is -12
+22:38 < Shivan> Yes
+22:39 < tushaar_> So always remember that sum of all the residuals = +12+(-12) = 0, which would not help us in any estimation
+22:39 < tushaar_> (Because what we're looking for is the minimum distance between mean line and the data point)
+22:39 -!- Myk_ [2ff749fd@gateway/web/freenode/ip.47.247.73.253] has quit [Ping timeout: 260 seconds]
+22:40 < tushaar_> Cool?
+22:40 < Shivan> Yes
+22:40 < aryanhimanshu> yes
+22:40 < tushaar_> How can we turn this situation around>
+22:40 < tushaar_> By using a "mod".
+22:40 < Shivan> Yes 
+22:41 < tushaar_> It makes the deviations positive.
+22:41 < tushaar_> So, we're good to go.
+22:41 < Shivan> Yep
+22:41 < tushaar_> But wait, we can also do this: squaring the residuals.
+22:41 < tushaar_> This: 1. Makes the deviations positive 2. Emphasizes larger deviations.
+22:42 < tushaar_> So, squaring seems like a better bait.
+22:42 < tushaar_> So, the training data-set becomes:
+22:42 < tushaar_> Meal 1: Residual = -5, Residual^2 = 25.
+22:42 < tushaar_> Meal 2: Residual = +7, Residual^2 = 49.
+22:43 < tushaar_> Meal 3: Residual = +1, Residual^2 = 1.
+22:43 < tushaar_> Meal 4: Residual = -2, Residual^2 = 4.
+22:43 < tushaar_> Meal 5: Residual = +4, Residual^2 = 16.
+22:43 < tushaar_> Meal 6: Residual = -5, Residual^2 = 25.
+22:43 < Shivan> 120 total
+22:43 < tushaar_> As you can see, the changes are very significant, as compared to the "mod" ones.
+22:44 < tushaar_> Correct @Shivan, and this 25+49+1+4+16+25 = 120 is called um of Squared Residuals (or) Errors.
+22:44 < tushaar_> The SSE.
+22:45 < tushaar_> Now, for the Block-Buster Concept:
+22:45 < tushaar_> The goal of simple linear regression is to create a linear model that minimizes the SSE.
+22:45 < tushaar_> Agree?
+22:45 < Shivan> Yes
+22:45 < aryanhimanshu> yes
+22:45 < bbk_> yes
+22:46 < tushaar_> If our model is significant, it will ‘eat up’ much of the raw SSE we had when we assumed that the independent variable didn’t even exist.
+22:46 < tushaar_> Like here, we are clueless about the meal amount.
+22:47 < tushaar_> That is if we had the meal amount in the data-set, the line would be of the form Y = mX + c, and this would further reduce the SSE.
+22:47 < tushaar_> Understood?
+22:48 < Shivan> Yes
+22:48 < aryanhimanshu> yes
+22:48 < tushaar_> Also, The regression line should literally “fit” the data better. It’ll minimize the residuals.
+22:48 < Shivan> But we don't have meal amnt
+22:49 < tushaar_> Yes, and if we had that, the line would be a lot better.
+22:49 < Shivan> Yes
+22:49 < tushaar_> Agree @Shivan?
+22:49 < Shivan> Yes
+22:49 < tushaar_> So, better in terms of ML means reduced SSE.
+22:50 < tushaar_> Get it?
+22:50 < Shivan> Yes
+22:50 < bbk_> yep
+22:50 < tushaar_> Now when we conduct simple linear regression with 2 variables, we will determine how good that line “fits” by comparing it to “this” type where we pretend that the 2nd variable doesn’t exist.
+22:50 < tushaar_> When both bill amout and tip amount are given.
+22:51 < tushaar_> Clear?
+22:51 < Shivan> Yes
+22:51 < aryanhimanshu> yes
+22:51 < tushaar_> So,
+22:51 < tushaar_> Q) If a 2-variable regression model looks like “this” model itself, what does the other independent variable do to help explain the dependent variable?
+22:52 < tushaar_> "this" refers to one-variable linear regression.
+22:53 < tushaar_> Answer please?
+22:53 < tushaar_> @bbk @Shivan @Aryan?
+22:54 < tushaar_> @gpatel? @venkat?
+22:54 < aryanhimanshu> does it mean that it's less dependant?
+22:54 < tushaar_> Nope.
+22:54 < Shivan> It still helps???
+22:55 < tushaar_> I'll give the answer towards the end, remind me.
+22:55 < tushaar_> Moving on.
+22:55 < tushaar_> Linear regression, technically describes one variable (dependent) as a funtion of another variable (independent) i.e, Y = f(X).
+22:56 < tushaar_> Regression models usually involve these variables:
+22:56 < tushaar_> Dependent (or response) variable – Y.
+22:56 < tushaar_> Independent (or explanatory or predictor) variables – X.
+22:56 < tushaar_> Unknown parameters - m, c.
+22:56 < tushaar_> Meanings are self-explanatory.
+22:56 < tushaar_> In general, regression model is Y = f(X, m, c) where the form of f must be specified (Eg: linear, quadratic). There could be a large number of independent variables. 
+22:57 < tushaar_> Slope-Intercept form of the Line: 
+22:57 < tushaar_> Y = mX + c; Eg: Y = 2X + 3.
+22:57 < tushaar_> X = Random Variable.
+22:57 < tushaar_> m = Slope whose direction decides the increse (or) decrease and magnitude gives the amount by which it increase (or) decreases.
+22:57 < tushaar_> c = Y-intercept, i.e, value of Y at X = 0.
+22:57 < tushaar_> It must be clear up till now.
+22:58 < aryanhimanshu> yes it is
+22:58 < aryanhimanshu> clear
+22:58 < bbk_> yes
+22:58 < Shivan> Yes
+22:58 < tushaar_> In our regression model, we use Y = θ0 + θ1x + ε.
+22:58 < tushaar_> Θ0 = Y-intercept parameter.
+22:58 < tushaar_> Θ1 = Slope parameter.
+22:58 < tushaar_> ε = Error term, unexplained variation in Y.
+22:59 < tushaar_> Simple Linear Regression Equation:  The hypoythesis function, h(X) = θ0 + θ1x. 
+23:00 < tushaar_> I'll wind up in another 10 mins. I don't think I'll be able to teach gradient descent today, we'll have a session tomorrow morning or so, for an hour or so.
+23:00 < tushaar_> cool, right?
+23:01 < Shivan> Yeah cool
+23:01 < aryanhimanshu> cool
+23:01 < bbk_> yeah 
+23:01 < tushaar_> I'll give you the story of cost function and we'll pick it up from there tomorrow.
+23:02 < tushaar_> Now, let’s move on to cost function and Gradient Descent.
+23:02 < tushaar_> This shouldn't be hard as you already understood the "Tips" example.
+23:02 < tushaar_> Now if you remember we had found residuals in the “Tips” example and we also said that the SSE must be minimized, inturn, the residuals must be minimized. 
+23:03 < tushaar_> So, the value of |h(Xi) – Yi| (absolute value) = Perpendicular (to the X-axis) distance of the data point from the regression line, must be minimized. 
+23:03 < tushaar_> So, what should our cost function be?
+23:03 < tushaar_> So, our cost function to be minimized will be |h(X) – Y| = J (say).
+23:03 < tushaar_> Correct?
+23:05 < tushaar_> Yes?
+23:05 < tushaar_> Gradient Descent is the algorithm, used in ML (general algorithm) to find the minimum error (similar to optimization problems).
+23:05 < aryanhimanshu> ok
+23:05 -!- Shivan [2f08a342@gateway/web/freenode/ip.47.8.163.66] has quit [Ping timeout: 260 seconds]
+23:05 < tushaar_> So, let’s go for it: 
+23:05 < tushaar_> sigma (|h(Xi) – Yi|) must be minimized.
+23:06 < tushaar_> As stated earlier, computing the SSE: sigma ((h(Xi) – Yi)^2).
+23:06 < tushaar_> Taking the mean-square: J(θ) = (1/m) sigma ((h(Xi) – Yi)^2), where m = number of training examples.
+23:06 < tushaar_> So, we are actually trying to minimize the mean-square.
+23:06 < tushaar_> Any questions?
+23:07 < aryanhimanshu> can you define h?
+23:07 < tushaar_> h(X) = θ0 + θ1x. 
+23:07 < tushaar_> The hypothesis function.
+23:07 < aryanhimanshu> ok
+23:08 < aryanhimanshu> ok
+23:08 < tushaar_> So, we are actually trying to minimize the mean-square.
+23:08 < tushaar_> Now, what the algorithm basically does is that it tries learn from the data-set what is the optimal value for these 2 parameters by slightly modifying the values of θ0 and θ1 and checking for the line of best fit.
+23:09 < tushaar_> cool?
+23:09 < aryanhimanshu> yes
+23:09 < tushaar_> Graph of J vs θ ? - One Variable ?
+23:09 < bbk_> yes 
+23:10 < tushaar_> J(θ) = (1/m) sigma ((h(Xi) – Yi)^2).
+23:10 < tushaar_> A parabola right?
+23:11 < tushaar_> well it is a downward parabloa.
+23:11 < tushaar_> Can you guess the shape of Graph of J vs θ ? - Two Variables?
+23:12 < tushaar_> Anyone
+23:12 < tushaar_> It is a 3D parabola.
+23:12 < aryanhimanshu> yes
+23:13 < tushaar_> Now, the ultimate question narrows down to
+23:13 < tushaar_> How do we minimize this function?
+23:13 < aryanhimanshu> and least point is our required point
+23:13 < tushaar_> Correct.
+23:13 < aryanhimanshu> we can use hill climbing method 
+23:13 < tushaar_> What is that?
+23:14 < tushaar_> Do you know what it means?
+23:14 < tushaar_> Significance in gradient descent.
+23:14 < aryanhimanshu> compare values at a point to a closer value & if its more suitable we move to that value
+23:15 < aryanhimanshu> otherwise we check for other possiblities
+23:15 < tushaar_> It is an optimization algorithm.
+23:15 < tushaar_>  It is an iterative algorithm that starts with an arbitrary solution to a problem, then attempts to find a better solution by incrementally changing a single element of the solution
+23:15 < aryanhimanshu> unless we reach a point where we cant find any better point of interest
+23:16 < tushaar_> Correct @aryan.
+23:16 < tushaar_> But we'll go with a similar yet better approach.
+23:16 < tushaar_> i.e, gradient descent.
+23:16 < aryanhimanshu> okay
+23:16 < tushaar_> we'll discuss about this in the tomorrow's session.
+23:17 < aryanhimanshu> ok
+23:17 < tushaar_> That's all for now, have a good night's rest.
+23:17 < aryanhimanshu> last question
+23:17 < tushaar_> Shoot!
+23:18 < bbk_> good night to all
+23:18 -!- bbk_ [674b43a5@gateway/web/freenode/ip.103.75.67.165] has quit [Quit: Page closed]
+23:18 < aryanhimanshu> is gradient descent optimised version for hill climbing method to avoid local minima or maxima problem??
+23:18 < tushaar_> Correct.
+23:18 < aryanhimanshu> ok 
+23:18 < tushaar_> The approoach involves moving until we find the global maxima and minima.
+23:18 < aryanhimanshu> I am actually very eager to learn that
+23:18 < tushaar_> I'm looking forward to seeing you in tomorrow's session then.
+23:20 -!- tushaar [~tushaar@157.49.47.243] has left #wc-ml1 []
+--- Log closed Wed Dec 14 23:20:14 2016
