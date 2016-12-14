@@ -383,7 +383,7 @@
 22:54 < aryanhimanshu> does it mean that it's less dependant?
 22:54 < tushaar_> Nope.
 22:54 < Shivan> It still helps???
-22:55 < tushaar_> I'll give the answer towards the end, remind me.
+22:55 < tushaar_> I'll give away the answer, it is "Nothing", if after adding the second variable there is no change then the SSE hasn't reuced at all.
 22:55 < tushaar_> Moving on.
 22:55 < tushaar_> Linear regression, technically describes one variable (dependent) as a funtion of another variable (independent) i.e, Y = f(X).
 22:56 < tushaar_> Regression models usually involve these variables:
@@ -453,7 +453,6 @@
 23:13 < aryanhimanshu> and least point is our required point
 23:13 < tushaar_> Correct.
 23:13 < aryanhimanshu> we can use hill climbing method 
-23:13 < tushaar_> What is that?
 23:14 < tushaar_> Do you know what it means?
 23:14 < tushaar_> Significance in gradient descent.
 23:14 < aryanhimanshu> compare values at a point to a closer value & if its more suitable we move to that value
