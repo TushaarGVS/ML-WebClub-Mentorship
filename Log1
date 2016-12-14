@@ -343,8 +343,10 @@
 22:04 < tushaar__> I don't even know what the different types of people are, but can you automatically find structure in the data from the you automatically cluster the individuals into these types that I don't know in advance? 
 22:05 < tushaar__> Because we're not giving the algorithm the right answer for the examples in my data set, this is Unsupervised Learning.
 22:05 < tushaar__> References: Tom M. Mitchell, Machine Learning, McGraw-Hill, 1997
-22:05 < tushaar__> With this we will wind up our first session and hope you guys had fun. We’ll look at Linear Regression in one variable, Gradient Descent and Logistic Regression in the next session. Go through the concepts for better understanding.
-22:05 < tushaar__> Along with Regression.
+22:05 < tushaar__> With this we will wind up our first session and hope you guys had fun.
+22:05 < tushaar__> We’ll look at Regression,Linear Regression in one variable, Gradient Descent and Logistic Regression in the next session..
+22:05 < tushaar__> Go through the concepts for better understanding.
+22:06 < tushaar__> Thank you all for attending the session.
 22:06 -!- tushaar [~tushaar@157.49.47.243] has left #wc-ml1 []
 --- Log closed Mon Dec 12 22:06:34 2016
 
