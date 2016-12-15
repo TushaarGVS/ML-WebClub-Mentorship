@@ -441,9 +441,9 @@
 23:09 < aryanhimanshu> yes
 23:09 < tushaar_> Graph of J vs θ ? - One Variable ?
 23:09 < bbk_> yes 
-23:10 < tushaar_> J(θ) = (1/m) sigma ((h(Xi) – Yi)^2).
+23:10 < tushaar_> J(θ0,θ1) = (1/m) sigma ((h(Xi) – Yi)^2), where θ0 = 0.
 23:10 < tushaar_> A parabola right?
-23:11 < tushaar_> well it is a downward parabloa.
+23:11 < tushaar_> well it is a upward parabloa (bowl shaped).
 23:11 < tushaar_> Can you guess the shape of Graph of J vs θ ? - Two Variables?
 23:12 < tushaar_> Anyone
 23:12 < tushaar_> It is a 3D parabola.
