@@ -458,7 +458,7 @@
 23:14 < aryanhimanshu> compare values at a point to a closer value & if its more suitable we move to that value
 23:15 < aryanhimanshu> otherwise we check for other possiblities
 23:15 < tushaar_> It is an optimization algorithm.
-23:15 < tushaar_>  It is an iterative algorithm that starts with an arbitrary solution to a problem, then attempts to find a better solution by incrementally changing a single element of the solution
+23:15 < tushaar_> It is an iterative algorithm that starts with an arbitrary solution to a problem, then attempts to find a better solution by incrementally changing a single element of the solution
 23:15 < aryanhimanshu> unless we reach a point where we cant find any better point of interest
 23:16 < tushaar_> Correct @aryan.
 23:16 < tushaar_> But we'll go with a similar yet better approach.
