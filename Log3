@@ -1,0 +1,513 @@
+18:07 < tushaar_> Welcome to Machine Learning Session-03.
+18:08 < tushaar_> I hope all of you went through the topics taught.
+18:08 < tushaar_> You'll be given an assignment towards the end of the session.
+18:08 < tushaar_> Answers to which will not be disclosed in this session.
+18:09 < Myk_> 👍 
+18:10 < Pheobe> Cool
+18:10 < tushaar_> Let us get started.
+18:11 < tushaar_> Recap of the previous session:
+18:11 < tushaar_> Simple linear regression is really a comparision of two models - 
+18:11 < tushaar_> One is where the independent variable doesn’t even exist.
+18:12 < tushaar_> The other uses the best fit regression line.
+18:12 < tushaar_> If there is only one variable, the best precision for other values is the mean of the “dependent” variable.
+18:13 < tushaar_> The difference between the best-fit line and the observed value is called the Residual (Error).
+18:14 < tushaar_> The residuals are squared and then added together to generate sum of squares of residuals (or) errors, the SSE.
+18:15 < tushaar_> Simple linear regression is designed to find the best fitting line through the data that minimizes the SSE.
+18:15 < tushaar_> So far, so good? 
+18:15 < Myk_> yes
+18:15 < tushaar_> We had discussed all of that in the previous session.
+18:16 < tushaar_> Now, moving on, let's discuss gradient descent in today's session.
+18:16 < tushaar_> Take a look at this: https://s29.postimg.org/d6yreagjb/ML_Session_03_01.png
+18:17 < tushaar_> Consider the Housing Prices data-set.
+18:17 < tushaar_> Now, in the given data-set, we have around 47 entries (Red Cross Marks).
+18:18 < tushaar_> Say, training data-set is as follows:
+18:18 < tushaar_> Size(feet^2) = 2104, Price($) = 460.
+18:18 < tushaar_> Size(feet^2) = 1416, Price($) = 232.
+18:18 < tushaar_> Size(feet^2) = 1534, Price($) = 315.
+18:18 < tushaar_> Size(feet^2) = 852, Price($) = 178.
+18:18 < tushaar_> and so on (47 entries).
+18:19 < tushaar_> Before moving any further, conventions:
+18:19 < tushaar_> m = no. of training examples = 47 (here).
+18:19 < tushaar_> X’s = Input or Independent Variables / features.
+18:19 < tushaar_> Y’s = Output variables / “target” variables.
+18:19 < tushaar_> (X, Y) = One training set example.
+18:20 < tushaar_> @Aryan what if h(X) and what does it signify?
+18:20 -!- Aman__ [0e8be932@gateway/web/freenode/ip.14.139.233.50] has quit [Ping timeout: 260 seconds]
+18:20 < tushaar_> Give me the answer in terms of the above conventions (if possible).
+18:24 < Cyclops_> h(x) = error + Y
+18:24 < tushaar_> Did all of you understand the conventions?
+18:25 < tushaar_> h(X) maps X's to Y's.
+18:25 < tushaar_> It is my estimate (or) regression line of the form θ0 + θ1X .
+18:25 < Myk_> h(x)= a+bX
+18:25 < tushaar_> Yes.
+18:25 < tushaar_> Now, is it clear till here?
+18:26 < Cyclops_> yes
+18:26 < tushaar_> Take a look at this: https://s30.postimg.org/9xcwgnz1t/ML_Session_03_10.png
+18:26 < Myk_> can it be quadratic 
+18:26 < Myk_> that h(x)
+18:27 < tushaar_> It can be.
+18:27 < tushaar_> That is multiple linear regression.
+18:27 < tushaar_> Remember we discussed yesterday.
+18:27 < Myk_> okayy 
+18:28 < tushaar_> I guess all of you had a look at the picture of h(X).
+18:28 < tushaar_> Size of the house = X.
+18:28 < tushaar_> h(X) = hypothesis function = h maps from X’s to Y’s.
+18:29 < tushaar_> Estimated Price = Estimated value of Y.
+18:29 < Myk_> so we will generate algo from training set..and than find h ?
+18:29 < tushaar_> Correct.
+18:29 < tushaar_> Picture is very helpful in understanding the relation.
+18:30 < tushaar_> Any doubts so far?
+18:30 < Myk_> no
+18:30 < tushaar_> We have already seen that, h(X) = θ0 + θ1X.
+18:31 < tushaar_> If h(X) turns out to be a straight line = Simple/univariate linear regression.
+18:31 < Cyclops_> should h(x) be continuous function?
+18:31 < tushaar_> Moving on to the Cost Function.
+18:31 < tushaar_> h(X) = θ0 + θ1X  (form: Y = mX + c)
+18:32 < tushaar_> where θi’s are the parameters.
+18:32 < tushaar_> How do we chose  θi’s? What is the criteria?
+18:32 < tushaar_> @Shivan, why don't you help us with that.
+18:34 < tushaar_> @Anyone?
+18:35 < Myk_> can we draw a line which passes through maximum points
+18:35 < Myk_> and then its slope and constant terms will be thetha i ? 
+18:36 < tushaar_> Which maynot always be true.
+18:36 < Myk_> yes
+18:36 < tushaar_> Because the only condition is:
+18:36 < tushaar_> Choose θ0 and θ1 such that the value of SSE is minimum. Agree?
+18:36 < Myk_> it might be parabola
+18:36 < Myk_> i think
+18:37 < tushaar_> Which means that variance is minimum. 
+18:37 < Myk_> we should first find the equation for sse
+18:37 < Myk_> and then using differentiation we can find the minimum 
+18:37 < tushaar_> The equation for SSE involves h(X) - Yi
+18:37 < Myk_> condition
+18:37 < tushaar_> Correct.
+18:38 < tushaar_> We will look at that approach in a while.
+18:38 < Myk_> 😊 
+18:38 < tushaar_> Also this indicates that, we have to pick  θ0 and θ1 such that h(X) is close to Y for our training examples (X, Y).
+18:38 < tushaar_> Fine?
+18:38 < Myk_> yes
+18:39 < Myk_> but how do we do that
+18:39 < tushaar_> So, from our last session, we devised that we have to minimize the cost function which is the mean-square.
+18:39 < tushaar_> @Myk that is nothing but reducing SSE.
+18:39 < tushaar_> We use gradient descent for that.
+18:40 < tushaar_> J(θ0,θ1) = 1/m (sigma ((h(Xi) – Yi)^2)); i = 1 to i = m.
+18:40 < tushaar_> Previous session.
+18:40 < tushaar_> Note that: m = #training examples and h(X) = θ0 + θ1X.
+18:40 < tushaar_> Fine till now?
+18:41 < Cyclops_> yes
+18:41 < tushaar_> In some text books, Cost-Function = J(θ0,θ1) = 1/2m (sigma ((h(Xi) – Yi)^2));
+18:41 < tushaar_> ‘2’ is added to reduce the calculation troubles.
+18:41 < tushaar_> Let us stick on to this, for now.
+18:42 < tushaar_> Remember how we considered the case of one variable in the last session?
+18:42 < tushaar_> Similarly, let us, for simplification purposes (assume) θ0 = 0, so, h(X) = θ1X, and this is a straight line that passes through the origin.
+18:44 < tushaar_> So, Cost-Function =  J(θ1) = 1/2m (sigma ((h(Xi) – Yi)^2)).
+18:44 < tushaar_> Fine?
+18:45 < Cyclops_> yes
+18:45 < Myk_> no 
+18:45 < tushaar_> Aim: minimize J(θ1).
+18:45 < tushaar_> @Myk?
+18:45 < Myk_> okay
+18:45 < tushaar_> Cool.
+18:45 < aryanhimanshu> ok
+18:45 < tushaar_> Now, come to the minimization part.
+18:46 < tushaar_> Let us consider a test training set:
+18:46 < tushaar_> #1 – X: 1 – Y: 1.
+18:46 < tushaar_> #2 – X: 2 – Y: 2.
+18:46 < tushaar_> #3 – X: 3 – Y: 3.
+18:47 < tushaar_> Here m = 3, and for every value of ‘m’, Y = X.
+18:47 < tushaar_> Brute-Force Approach.
+18:47 < tushaar_> So, let us substitute values for θ1 and gradually find out what we get out of it.
+18:47 < Myk_> m=3..?
+18:47 < Myk_> slope.!
+18:47 < tushaar_> @Myk m = #training examples.
+18:48 < Myk_> oh sry
+18:48 < tushaar_> 1. Put θ1 = 1, we get h(X) = X, so J(θ1) = 1/6 (0^2+0^2+0^2) = 0.
+18:49 < tushaar_> Cool?
+18:49 < Cyclops_> yes
+18:49 < Myk_> dont understand
+18:49 < tushaar_> Which part @Myk
+18:49 < Myk_> this last one
+18:50 < Myk_> for thetha 1 = 1
+18:50 < tushaar_> Substitute θ1 = 1.
+18:50 < tushaar_> h(X) = θ1X.
+18:50 < tushaar_> So, h(X) = X.
+18:50 < Myk_> what about thetha 0?
+18:51 < tushaar_> θ0 = 0 (by assumption)
+18:51 < tushaar_> Assume that θ0 = 0 (Statement).
+18:51 < Myk_> i am asking about value of j
+18:51 < Myk_> how that would be 0
+18:52 < tushaar_> See, h(X) = X.
+18:52 < tushaar_> And from training-set Y = X.
+18:52 < Myk_> yes
+18:52 < tushaar_> So, h(X) - Yi = X - X.
+18:52 < tushaar_> For all the three values.
+18:52 < Myk_> yes
+18:52 < tushaar_> So, 0^2 in each case.
+18:52 < tushaar_> So, 3*0 = 0.
+18:53 < Myk_> and why we divide it  by 6
+18:53 < tushaar_> 1/2m = 1/2(3) = 1/6.
+18:53 < Myk_> okay
+18:53 < Myk_> got it
+18:54 < tushaar_> Now, take a look at this: https://s29.postimg.org/5dwul1o13/ML_Session_03_07.png
+18:55 < tushaar_> Any doubts regarding the image?
+18:55 < Cyclops_> no doubts
+18:55 < Myk_> no
+18:55 < tushaar_> Moving on:
+18:56 < tushaar_> 2. Put θ1 = 0.5, we get h(X) = 0.5X, so J(θ1) = 1/6 (0.5^2+1^2+1.5^2) = 0.58.
+18:56 < tushaar_> The same logic. 
+18:56 < Cyclops_> yeah
+18:56 < tushaar_> Take a look at the resulting graph: https://s23.postimg.org/41vezqt6j/ML_Session_03_08.png
+18:57 < tushaar_> Any doubts regarding this image?
+18:58 < Myk_> no
+18:58 < Cyclops_> no
+18:58 < tushaar_> Moving on:
+18:58 < tushaar_> 3. Put θ1 = 0, we get h(X) = 0, so J(θ1) = 1/6 (1^2+2^2+3^2) = 2.3.
+18:59 < Myk_> okay
+18:59 < tushaar_> Again the same logic, so have a look at this: https://s30.postimg.org/fzqida19d/ML_Session_03_09.png
+18:59 < tushaar_> So, @Myk, what is the graph of J(θ1) vs θ1?
+18:59 < Myk_> yes
+19:00 < Myk_> got it
+19:00 < Myk_> its parabola
+19:00 < tushaar_> Cool, does it answer your doubt?
+19:00 < Myk_> and its vertex would be our required value
+19:00 < tushaar_> So, the curve of J(θ1) vs is an Upward parabola with minimum value at θ1 = 1.
+19:00 < Myk_> yes
+19:00 < tushaar_> Now, let’s move on 2-variable cost-function.
+19:01 < tushaar_> Hypothesis function =  h(X) = θ0 + θ1X, parameters θ0 and θ1.
+19:01 < tushaar_> Previously, hypothesis function =  h(X) = θ0 + θ1X, where parameter θ0 = 0.
+19:01 < tushaar_> Cost-Function = J(θ0,θ1) = 1/2m (sigma ((h(Xi) – Yi)^2)).
+19:02 < tushaar_> Aim: minimize J(θ0,θ1).
+19:03 < Myk_> okayy 
+19:03 < tushaar_> Cost-Function: 3D Paraboloid = Bowl shaped.
+19:03 < tushaar_> Take a look at this: https://s30.postimg.org/venk5kabl/ML_Session_03_03.png
+19:03 < tushaar_> Remember this graph, there's a question coming up in a short while.
+19:04 < tushaar_> Shall we move on to the data-set with 2 variables?
+19:04 < Myk_> yes
+19:05 < Cyclops_> yes
+19:05 < tushaar_> Consider this data-set: https://s27.postimg.org/u0ailunhv/ML_Session_03_02.png
+19:06 < tushaar_> In a similar fashion, let us start substituting values for θ0 and θ1.
+19:06 < tushaar_> Let us gradually find out what we get out of it. 
+19:06 < tushaar_> (We will be using contour plots (For now, they are just the top view image of the 3D Paraboloid)).
+19:07 < tushaar_> Any doubts so far?
+19:07 < Cyclops_> no
+19:07 < Myk_> nope
+19:07 < tushaar_> 1. Put θ0 = 800, θ1 = -0.15.
+19:08 < tushaar_>  Take a look: https://s27.postimg.org/9nnawqhir/ML_Session_03_04.png
+19:09 < tushaar_> Understood?
+19:09 < Myk_> no
+19:09 < tushaar_> what didn't you understand?
+19:10 < Cyclops_> the 2nd graph should be 3d right?
+19:10 < Myk_> second graph
+19:10 < tushaar_> Yes.
+19:10 < tushaar_> Top view of Paraboloid, shown as ellipses.
+19:11 < Myk_> what is that cross
+19:11 < tushaar_> That is the 800, -0.15 mark.
+19:12 < tushaar_> Understand?
+19:12 < Cyclops_> yes
+19:12 < Myk_> yes
+19:12 < tushaar_> Cool, Moving on:
+19:12 < tushaar_> 2. Put θ0 = 360, θ1 = 0.
+19:13 < tushaar_> Take a look: https://s28.postimg.org/xm0c9tnhp/ML_Session_03_05.png
+19:13 < tushaar_> 3. Put θ0 = 250, θ1 = 0.12. 
+19:13 < tushaar_> In the same manner.
+19:14 < Myk_> so we are trying to reach that center point.?
+19:14 < tushaar_> Take a look at this: https://s28.postimg.org/bieay9pn1/ML_Session_03_06.png.
+19:14 < tushaar_> Correct.
+19:15 < tushaar_> Just think, what is the global minimum of that 3D paraboloid?
+19:15 < Cyclops_> some positive number
+19:15 < Myk_> that center point
+19:15 < tushaar_> Correct @Myk.
+19:15 < tushaar_> So, we are trying to reach that.
+19:16 < tushaar_> So, shall I take it that the intution (or) Brute force approach is clear to you?
+19:16 < Cyclops_> yes
+19:17 < tushaar_> This is the basis for Gradient Descent.
+19:17 < tushaar_> Say we have a cost-function J(θ0,θ1) (or J(θ0, θ1, θ2, ...,θn)).
+19:17 < tushaar_> Two or More variables.
+19:17 < tushaar_> Aim: minimize the value of J(θ0,θ1).
+19:18 < Myk_> for 2 variables
+19:18 < Myk_> we got paraboloid
+19:18 < Myk_> what about 4 variable
+19:18 < tushaar_> First, we'll look at the general case J and then we'll substitute the linear regression's J.
+19:19 < tushaar_> Some, weird curve @Myk.
+19:19 < Myk_> 😁 
+19:19 < tushaar_> So, general case:
+19:19 < tushaar_> Key-Idea:
+19:19 < tushaar_> Start with some values of θ0 and θ1 (say 0, 0).
+19:20 < tushaar_> Keep changing θ0 and θ1 to reduce J(θ0,θ1) until we hopefully end-up at a minimum.
+19:20 < tushaar_> It'll be clear with the following example.
+19:21 < tushaar_> Take a look at this (Start Point = top most marked point on the red hill):
+19:21 < tushaar_> https://s28.postimg.org/aajgdokot/ML_Session_03_11.png
+19:21 < tushaar_> We see that as we start from the top most point on the red hill, we keep going down (descending) towards the local minima.
+19:22 < tushaar_> local minima (dark blue).
+19:22 < tushaar_> Any Doubts?
+19:22 < Cyclops_> yeah
+19:22 < Cyclops_> no 
+19:22 < Myk_> no
+19:23 < tushaar_> Cool.
+19:23 < tushaar_> Now, consider starting from a point a bit to the right of the previous starting point.
+19:23 < tushaar_> Take a look: https://s27.postimg.org/4fgqt8emb/ML_Session_03_12.png
+19:24 < tushaar_> What do you observe?
+19:24 < Cyclops_> its not absolute minima
+19:24 < Myk_> why it lead to another minima.?
+19:24 < tushaar_> Kinda @Myk.
+19:25 < tushaar_> We observe that a slight change in the starting point, can change my end convergence point.
+19:25 < tushaar_> This is a characteristic property of gradient descent algorithm.
+19:26 < tushaar_> So, did you guys understand the basic idea behind gradient descent?
+19:27 < Myk_> basic ides means what...is it , for different starting point it will give different minima(local).?
+19:27 < tushaar_> Not that.
+19:27 < tushaar_> As to how we found the local minima.
+19:27 < Myk_> than.?
+19:28 < tushaar_> Understood?
+19:28 < Myk_> not exactly 
+19:29 < tushaar_> See, pick an arbitrary point, and always move in the direction that descends.
+19:29 < Cyclops_> but we have to find absolute minima right? how to overcome this problem?
+19:29 < tushaar_> Always move in the descending direction.
+19:30 < Myk_> is it like we choose some other arbitrary point and than check 
+19:30 < tushaar_> Good Question, let's dicuss that later @Cyclops.
+19:30 < Myk_> if it give minimum than previous or not
+19:30 < tushaar_> No, any point chosen, will ultimately lead to a local minima.
+19:31 < Myk_> how
+19:31 < tushaar_> Start anywhere in the graph.
+19:31 < Myk_> okay
+19:31 < Myk_> than
+19:31 < tushaar_> Pick a point on the graph @Myk.
+19:31 < tushaar_> Say, on the Yellow region.
+19:32 < Myk_> okay
+19:32 < tushaar_> Now, Light Blue region is steeper than the yellow region.
+19:32 < tushaar_> Go there.
+19:32 < Myk_> so thats what i was saying
+19:33 < tushaar_> From there, the Dark-Blue region is the next stop.
+19:33 < Myk_> how do you choose that light blue region
+19:33 < tushaar_> How as in?
+19:33 < Myk_> why dont u go towards red
+19:33 < tushaar_> Mathematically?
+19:33 < tushaar_> Red is higher than Light Blue.
+19:34 -!- ashwath [75ca2203@gateway/web/freenode/ip.117.202.34.3] has joined #wc-ml1
+19:34 < tushaar_> I said, descend 'not' ascend.
+19:34 < Myk_> so here u will compare the value for light blue and current position
+19:34 < Myk_> if it is lower than we move
+19:34 < tushaar_> Correct.
+19:34 < Myk_> ?
+19:34 < tushaar_> Correct.
+19:34 < Myk_> thats what i was trying to say
+19:35 < tushaar_> Okay.
+19:35 < tushaar_> So, it is clear now, right?
+19:35 < Myk_> yes
+19:35 < tushaar_> Algorithm:
+19:35 < tushaar_> Repeat until covergence {
+19:36 < tushaar_>           // 2 variables.
+19:36 < tushaar_>           θj := θj – α(∂/∂θj(J(θ0,θ1));
+19:36 < tushaar_>           // simultaneously update j = 0, j = 1.
+19:36 < tushaar_> }
+19:37 < tushaar_> α = Learning Factor (or) Learning Rate.
+19:37 < tushaar_> = How long is the jump/ how long is one step.
+19:37 < tushaar_> Repeat until covergence {
+19:37 < tushaar_>           // 1 variable.
+19:37 < tushaar_>           θ := θ – α(d/dθ(J(θ1));
+19:38 < tushaar_> }
+19:38 < tushaar_> It may not be very clear at this stage.
+19:38 < tushaar_> Before I give you the Proof of its Correctness, Can someone explain what is meant by “simultaneous” update?
+19:39 < Myk_> yes
+19:39 < Myk_> its a prtial differential 
+19:39 < tushaar_> Go ahead @Myk.
+19:40 < Cyclops_> got it
+19:40 < tushaar_> Not really.
+19:40 < Myk_> so we would do that with respect to both
+19:40 < tushaar_> Yes that you do, but simultaneous means:
+19:40 < tushaar_> temp0 = θ0 – α(∂/∂θ0(J(θ0,θ1));
+19:40 < tushaar_> temp1 = θ1 – α(∂/∂θ1(J(θ0,θ1));
+19:41 < tushaar_> θ0 = temp0;
+19:41 < tushaar_> θ1 = temp1;
+19:41 < Myk_> okay
+19:41 < Myk_> yes
+19:41 < tushaar_> Which is correct. The following is incorrect.
+19:41 < tushaar_> temp0 = θ0 – α(∂/∂θ0(J(θ0,θ1));
+19:41 < tushaar_> θ0 = temp0;
+19:41 < tushaar_> temp1 = θ1 – α(∂/∂θ1(J(θ0,θ1));
+19:41 < tushaar_> θ1 = temp1;
+19:42 < tushaar_> Can you tell me why the second (non-simultaneous) one is incorrect?
+19:42 < Myk_> yes otherwise it will update the values of 
+19:42 < Myk_> both
+19:42 < Myk_> before calculating for
+19:42 < Myk_> previous one
+19:42 < aryanhimanshu> yep i agree with mayank
+19:43 < tushaar_> Good. The second is incorrect as θ0 is updated in step-2 and the updated value is used in finding the new θ1 value
+19:43 < Myk_> yes
+19:43 < Cyclops_> got it
+19:43 < tushaar_> So clear till now, right.
+19:43 < tushaar_> Except the big formula thing.
+19:43 < Myk_> yes
+19:44 < tushaar_> We will not prove the above equation, but will go through it intutively, for simplicity consider 1-variable:
+19:44 < tushaar_> Take a look at this: https://s24.postimg.org/wj94cux79/ML_Session_03_15.png
+19:45 < tushaar_> 1. In the first figure, we have considered the value of θ1 after the local minimum. So, the gradient descent must help reduce the value of θ1.
+19:46 < tushaar_> As we have seen that the minimum is at the center, the gradient descent must help find this point.
+19:46 < tushaar_> Agree?
+19:46 < Myk_> yes
+19:46 < tushaar_> θ1 := θ1 – α(d/dθ1(J(θ1));
+19:46 < tushaar_> where d/dθ1(J(θ1) is the slope of the tangent at the point θ1 = +ve.
+19:46 < tushaar_> So, θ1 := θ1 – α(+ve); 
+19:47 < tushaar_> So, value of θ1 will be lesser than the previous value = Correct.
+19:47 < tushaar_> Are you with me?
+19:48 < Myk_> yes
+19:48 < Myk_> go ahead
+19:48 < tushaar_> 2. Now, in the second figure, we have considered the value of θ1 before the local minimum.
+19:48 < tushaar_> So, the gradient descent must help increase the value of θ1.
+19:48 < Myk_> yes
+19:48 < tushaar_> θ1 := θ1 – α(d/dθ1(J(θ1));
+19:48 < tushaar_> where d/dθ1(J(θ1) is the slope of the tangent at the point θ1 = -ve.
+19:49 < tushaar_> So, θ1 := θ1 – α(-ve);
+19:49 < tushaar_> So, value of θ1 will be greater than the previous value = Correct.
+19:49 < Cyclops_> yeah
+19:49 < Myk_> yeah
+19:49 < tushaar_> So, intutively gradient descent algorithm is correct.
+19:49 < Cyclops_> yes
+19:49 < tushaar_> This is the proof of correctness.
+19:50 < Myk_> okay
+19:50 < tushaar_> Now, let us see how the choice of α affects the algorithm: 
+19:50 < tushaar_>  Take a look: https://s28.postimg.org/76r2p2y8t/ML_Session_03_13.png
+19:51 < tushaar_> If α is too small, gradient descent will be obtained but will be very slow (Figure - 1).
+19:51 < Myk_> bt if big..that will create a mess
+19:51 < Myk_> 😂 
+19:51 < tushaar_> Instead if α is too large,  gradient descent can overshoot the minimum, i.e, it may fail to converge or even diverge (Figure - 2).
+19:52 < tushaar_> Correct @Myk.
+19:52 < tushaar_> It may never reach the minimum.
+19:52 < tushaar_> So, everything is clear till now?
+19:53 < Myk_> yepp
+19:53 < aryanhimanshu> yes
+19:53 < tushaar_> So, question time.
+19:53 < tushaar_> What will the gradient descent do, if the given value of θ1 is the local minimum? 
+19:53 < tushaar_> Take a look: https://s29.postimg.org/6ojxg5gx3/ML_Session_03_14.png
+19:54 < tushaar_> Answer?
+19:55 < Myk_> no
+19:56 < tushaar_> What no?
+19:56 < Myk_> i think it will check for all points
+19:56 < Myk_> and as you said
+19:56 < tushaar_> Here's the answer:
+19:56 < tushaar_> Slope of the tangent at θ1 is zero (Line parallel to X-axis).
+19:56 < tushaar_> So, d/dθ1(J(θ1) = 0.
+19:56 < tushaar_> So, θ1 := θ1 – α(0);
+19:56 < Myk_> yes
+19:56 < tushaar_>  So, θ1 := θ1. Hence there will be no change in the value of θ1.
+19:57 < aryanhimanshu> so it will be stuck at local minima??
+19:57 < tushaar_> @Cyclops had asked a question, the same one @aryan is asking.
+19:57 < tushaar_> The answer is "Yes".
+19:57 < Myk_> if we start from first local maxima
+19:57 < Myk_> then
+19:58 < Myk_> okay
+19:58 < tushaar_> Then it'll reach some local minima.
+19:58 < Myk_> so after reaching local minima
+19:58 < tushaar_> It stays there.
+19:58 < Myk_> okay
+19:59 < tushaar_> Time to unleash the ultimate question.
+19:59 < tushaar_> We had deduced that if we choose the value of θ1 to be the local minimum, it remains there itself – does this affect the linear regression model that we have considered? 
+20:00 < aryanhimanshu> yes it does
+20:00 < tushaar_> How?
+20:00 < Myk_> yes
+20:00 < Myk_> as we choose local minima
+20:00 < Myk_> than accordingly our line will change
+20:00 < aryanhimanshu> we want be able to get the global minima
+20:00 < tushaar_> Okay, here's the answer, "No".
+20:01 < Myk_> how
+20:01 < tushaar_> Take a look at this: https://s30.postimg.org/venk5kabl/ML_Session_03_03.png and tell me if this is the same cost function graph of what we have chosen.
+20:02 < Myk_> yes
+20:02 < Myk_> its same as the first one
+20:02 < tushaar_> How many minima do you see?
+20:02 < Myk_> one
+20:02 < tushaar_> So, is there any chance of getting stuck?
+20:03 < Myk_> so for one variable  it works
+20:03 < Myk_> and for 2 variable also
+20:03 < tushaar_> No, the graph is for 2 variables.
+20:03 < aryanhimanshu> ok
+20:03 < tushaar_> Gradient descent fails in case there are more than one minima.
+20:04 < Cyclops_> ok. so the graph of required theta i s will have a single minima
+20:04 < tushaar_> But, that is not the situation in our case.
+20:04 < Myk_> that means if we have more than 2 variables
+20:04 < Myk_> it would have fail
+20:04 < tushaar_> Only if the graph has more than one minima,
+20:05 < tushaar_> and the minima it has found is not the global minimum.
+20:05 < Myk_> is there any example of two variable 
+20:05 < tushaar_> Understood?
+20:05 < Myk_> that would not form parabola
+20:05 < tushaar_> The graph that you say earlier (Color coded graph).
+20:05 < Cyclops_> understood
+20:05 < Myk_> i mean two variable with multiple minima
+20:06 < tushaar_> That is a 2 variable graph, θ0, θ1 are the variables.
+20:06 < Myk_> okay
+20:06 < tushaar_> Understood?
+20:06 < Myk_> yes
+20:07 < Myk_> bt the question remains
+20:07 < tushaar_> Let's devise J for linear regression model.
+20:07 < tushaar_> Yes @Myk?
+20:07 < Myk_> how to find if there are more than one minima
+20:08 < Myk_> or should we use gradient descent or not
+20:08 < tushaar_> You cannot, you'll have to go with some other algorithm.
+20:08 < Myk_> okay
+20:08 < tushaar_> Gradient descent will give you better results, in such case, but not the best.
+20:09 < tushaar_> I hope you understood.
+20:09 < Myk_> yes
+20:09 < Myk_> i do
+20:09 < tushaar_> For our linear regression model:
+20:09 < tushaar_> h(Xi) = θ0 + θ1Xi.
+20:09 < tushaar_> J(θ0,θ1) = 1/2m (sigma ((h(Xi) – Yi)^2)).
+20:10 < tushaar_> Gradient descent algorithm:
+20:10 < tushaar_> Repeat until covergence {
+20:10 < tushaar_>           // 2 variables.
+20:10 < tushaar_>           θj := θj – α(∂/∂θj(J(θ0,θ1));	(simultaneously update j = 0, j = 1)
+20:10 < tushaar_> }
+20:10 < tushaar_> Now, what we need: ∂/∂θj(J(θ0,θ1).
+20:11 < tushaar_> Calculating:
+20:11 < tushaar_> ∂/∂θj(J(θ0,θ1))
+20:11 < tushaar_> = ∂/∂θj(1/2m (sigma ((h(Xi) – Yi)^2))). 
+20:11 < tushaar_> = ∂/∂θj(1/2m (sigma (( θ0 + θ1Xi – Yi)^2))).
+20:11 < tushaar_> Clear till now?
+20:11 < Myk_> yes
+20:12 < tushaar_> Now, j = 0: ∂/∂θ0(J(θ0,θ1)) = 1/m (sigma (h(Xi) – Yi)).
+20:12 < tushaar_> j = 1: ∂/∂θ1(J(θ0,θ1)) = 1 /m (sigma ((h(Xi) – Yi)*Xi )).
+20:12 < tushaar_> So, Gradient descent algorithm for linear regression:
+20:12 < tushaar_> Repeat until covergence {
+20:12 < tushaar_>           // 2 variables.
+20:12 < tushaar_>           θ0 := θ0 – α(1/m (sigma (h(Xi) – Yi)));
+20:13 < tushaar_>           θ1 := θ1 – α(1 /m (sigma ((h(Xi) – Yi)*Xi )));
+20:13 < tushaar_>           // update θ0 and θ1 simultaneously.
+20:13 < tushaar_> }
+20:13 < tushaar_> Fine?
+20:13 < Myk_> yes
+20:13 < tushaar_> Cool.
+20:13 < tushaar_> Q) Can the gradient descent converge to a local minimum, even with the learning rate α fixed?
+20:14 < Myk_> maybe ..bcz it depends on alpha
+20:14 < Myk_> if its small then yes
+20:14 < tushaar_> Good.
+20:14 < tushaar_> As we approach the local minimum, gradient descent will automatically take smaller steps, as the value of slope (i.e, d/dθ1(J(θ1)) keeps on approaching zero.
+20:15 < Myk_> okay
+20:15 < tushaar_> Take a look: https://s29.postimg.org/d28s9uddj/ML_Session_03_16.png
+20:15 < tushaar_> So, that's that.
+20:15 < tushaar_> NO doubts up till now, right?
+20:16 < Myk_> so that automatically reduce alpha.?
+20:16 < tushaar_> No, that automatically reduces the d/dθ1(J(θ1)*α term.
+20:17 < tushaar_> or Value.
+20:17 < Myk_> okay .... no doubts.
+20:17 < tushaar_> Next, there is something called as the “Batch” gradient descent (‘not’ preferable) -
+20:17 < tushaar_> Each step of gradient descent uses all the training examples.
+20:17 < tushaar_> The algorithm takes a lot of time to compute. I’ll leave this for self-study.
+20:19 < tushaar_> So, that's all for today, now for the Assignments:
+20:19 < tushaar_> Assignment - 01 (Session - 01 and 02):
+20:19 < tushaar_> Q) The amount of rain that falls in a day is usually measured in either millimeters (mm) or inches. Suppose you use a learning algorithm to predict how much rain will fall tomorrow. Would you treat this as a classification or a regression problem?
+20:19 < tushaar_> Q) Suppose you are working on stock market prediction, Typically tens of millions of shares of Microsoft stock are traded (i.e., bought/sold) each day. You would like to predict the number of Microsoft shares that will be traded tomorrow. Would you treat this as a classification or a regression problem?
+20:20 < tushaar_> Assignment - 02 (Session - 02 and 03):
+20:20 < tushaar_> Q) Suppose that for some linear regression problem (say, predicting housing prices as in session 01), we have some training set, and for our training set we managed to find some θ0 and θ1, such that J(θ0,θ1) = 0. Which of the statement(s) below must then be true? 
+20:20 < tushaar_> a) For this to be true, we must have θ0 = 0 and θ1 = 0, such that h(X) = 0.
+20:20 < tushaar_> b) This is not possible: By the definition of J(θ0,θ1), it is not possible for there to exist  θ0 and θ1 so that  J(θ0,θ1) = 0.
+20:20 < tushaar_> c) We can perfectly predict the value of even for new examples that we have not yet seen (Eg: we can perfectly predict prices of even new houses that we have not yet seen).
+20:20 < tushaar_> d) For these values of θ0 and θ1 that satisfy J(θ0,θ1) = 0, we have that h(Xi) = Yi for every training example (Xi,Yi).
+20:21 < tushaar_> Q) Let ‘f’ be some function so that f(θ0,θ1) outputs a number. For this problem, ‘f’ is some arbitrary/unknown smooth function (not necessarily the cost function of linear regression, so may have local optima). Suppose we use gradient descent to try to minimize  f(θ0,θ1) as a function of θ0 and θ1. Which of the following statement(s) is (are) true?
+20:21 < tushaar_> a) Setting the learning rate α to be very small is not harmful, and can only speed up the convergence of gradient descent.
+20:21 < tushaar_> b) If the first few iterations of gradient descent cause f(θ0,θ1) to increase rather than decrease, then the most likely cause is that we have set the learning rate α to too large a value.
+20:21 < tushaar_> c) If θ0 and θ1 are initialized at the global minimum, then one iteration will not change their values.
+20:21 < tushaar_> d) No matter how θ0 and θ1  are initialized, so long as α is sufficiently small, we can safely expect gradient descent to converge to the same solution.
+20:21 < tushaar_> I have presented 4 questions, the answers to which will be discussed in the next session.
+20:21 < tushaar_> Next Session: Logistic Regression and SVM (Support Vector Machines).
+20:21 < tushaar_> Read Tom M. Mitchel’s ML Book for any further study or Clarification.
+20:22 < tushaar_> That's all for now. Have a good night.
+20:22 < tushaar_> Thank you all for attending this session.
+20:22 -!- tushaar [~tushaar@157.49.114.206] has left #wc-ml1 []
+--- Log closed Thu Dec 15 20:22:45 2016
