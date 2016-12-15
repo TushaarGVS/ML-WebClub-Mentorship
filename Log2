@@ -472,7 +472,8 @@
 23:18 < aryanhimanshu> is gradient descent optimised version for hill climbing method to avoid local minima or maxima problem??
 23:18 < tushaar_> Correct.
 23:18 < aryanhimanshu> ok 
-23:18 < tushaar_> The approoach involves moving until we find the global maxima and minima.
+23:18 < tushaar_> Both are very similar, in a single iteration of hill climbing each variable will be incremented by either 0 or a fixed quantity, whereas in coordinate descent each variable will be incremented by some value between 0 and the endpoint of the line search. 
+23:18 < tushaar_> It seems like coordinate descent is best applied to functions on continuous variables, while hill climbing can be applied to both continuous and discrete variables.
 23:18 < aryanhimanshu> I am actually very eager to learn that
 23:18 < tushaar_> I'm looking forward to seeing you in tomorrow's session then.
 23:19 < tushaar_> Thank you all for attending this session.
