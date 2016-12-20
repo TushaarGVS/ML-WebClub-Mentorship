@@ -1,0 +1,377 @@
+19:00 < tushaar> Welcome to Machine Learning - Session 04.
+19:00 < tushaar> Have you guys worked out the assignment?
+19:00 <@aryanhimanshu> yes
+19:00 < tushaar> Good.
+19:10 < tushaar_> Let's get started.
+19:11 < tushaar_> Can someone review what was covered in the last session.
+19:12 < aryanhimanshu> we covered gradient descent
+19:12 < aryanhimanshu> implementation of the algorithm 
+19:13 < aryanhimanshu> effects of learning rate (large and small)
+19:13 < tushaar_> Good.
+19:14 < tushaar_> Now, let us see some 'binary classification' examples.
+19:14 < tushaar_> 1. Email: Spam / Not Spam ?
+19:14 < tushaar_> 2. Online Transactions: Fraudulent (Yes / No)?
+19:14 < tushaar_> 3. Tumor: Malignant / Benign ?
+19:14 < tushaar_> All of these are 'classification' problems and with only 2 outcomes.
+19:15 < tushaar_> So, Y Є {0, 1} where :
+19:15 < tushaar_> 0: “Negative Class” (E.g., Benign Tumor) – Absence of “Something”.
+19:15 < aryanhimanshu> yes
+19:15 < tushaar_> 1: “Positive Class” (E.g., Malignant Tumor) – Presence of “Something”.
+19:16 < tushaar_> Any doubts up till here?
+19:16 < aryanhimanshu> nope
+19:16 < tushaar_> Okay.
+19:16 < tushaar_> Y Є {0, 1, 2} = Multi-Class Classification
+19:16 < tushaar_> E.g., In a match, you either, win (or) lose (or) it can be a draw.
+19:17 < tushaar_> Have a look at the example, we had already seen: https://s28.postimg.org/g3udtshtp/ML_Session_04_01.png
+19:17 < tushaar_> Had a look?
+19:18 < aryanhimanshu> yes
+19:18 < tushaar_> Now, we know that this is a 'Classification' problem, right?
+19:18 < aryanhimanshu> yes
+19:19 < tushaar_> But, let us try out a linear regression line through the data: 
+19:19 < tushaar_> h(X) =  θ0 + θ1X.
+19:19 < tushaar_> Any clue, as to how, it'll be?
+19:20 < aryanhimanshu> no
+19:20 < tushaar_> No problem.
+19:20 < aryanhimanshu> not exactly
+19:20 < tushaar_> To make predictions, let us assume, the value of 0.5 = “threshold”, i.e,
+19:20 < tushaar_> h(X) >= 0.5, predict “Y = 1”.
+19:20 < tushaar_> h(X) < 0.5, predict “Y = 0”.
+19:21 < aryanhimanshu> are we going to use sigmoid function?
+19:21 < tushaar_> Take a look at this: https://s29.postimg.org/vahud36cn/ML_Session_04_02.png
+19:21 < tushaar_> @aryan yes, but while dealing with 'logistic' regression.
+19:21 < aryanhimanshu> ok
+19:22 < tushaar_> Did you understand the approach, mentioned above?
+19:22 < aryanhimanshu> yes
+19:23 < tushaar_> Now, linear regression, seems to fairly handle the situations.
+19:23 < tushaar_> Right?
+19:23 < aryanhimanshu> yes
+19:24 < tushaar_> Now, say we add another data-point. Like in: https://s30.postimg.org/wsjqlg2sx/ML_Session_04_03.png
+19:24 < tushaar_> For the following data-set, the “magenta” line seems like a reasonably good prediction.
+19:25 < tushaar_> But, considering the above hypothesis, we get the following “blue” regression line, which is a pretty bad prediction.
+19:25 < tushaar_> Take a look: https://s28.postimg.org/axf75t0wt/ML_Session_04_04.png
+19:25 < tushaar_> Understood till here?
+19:26 < aryanhimanshu> yes
+19:26 < tushaar_> Moving on.
+19:26 < tushaar_> So, linear regression lines, often would not give us the correct analysis. 
+19:27 < tushaar_> More over, from the previous images it is evident that h(X) may attain values < 0 and > 1. 
+19:27 < tushaar_> Even though all the labels range only from 0 to 1.
+19:27 < tushaar_> So, we need an algorithm, called “Logistic Regression” (as Classification Algorithm)  such that the output values are only in between 0 and 1, i.e., 0 <= h(X) <= 1.
+19:28 < tushaar_> So, this was the base for 'logistic regression'.
+19:28 < tushaar_> Understood?
+19:28 < aryanhimanshu> yes
+19:29 < tushaar_> Note that, even though 'logistic regression' has 'regression' in it's name, it is a 'Classification' algorithm.
+19:29 < tushaar_> Moving to logistic regression.
+19:29 < tushaar_> We want: 0 <= h(X) <= 1.
+19:29 < tushaar_> h(X) for “Linear Regression” = θ0 + θ1X.
+19:29 < tushaar_> For, “Logistic Regression” h(X) = g(θ0 + θ1X), where g(z) = 1/(1+e^(-z)).
+19:30 < tushaar_> g(z) is called the “Sigmoid” or “Logistic” function.
+19:30 < tushaar_> It asymptotes at 0 and 1 (i.e, 0 gives -ve infinity and 1 gives +ve infinity).
+19:30 < tushaar_> So, h(X) = 1/(1+e^(-(θ0 + θ1X))).
+19:31 < tushaar_> Clear?
+19:31 < aryanhimanshu> So, h(X) = 1/(1+e^(-(θ0 + θ1X)))
+19:31 < tushaar_> Yes.
+19:32 < tushaar_> Have a look: https://s29.postimg.org/wfm1ucqhz/ML_Session_04_05.png
+19:32 < aryanhimanshu> i am not able to understand from where this came into picture -(θ0 + θ1X)  
+19:33 < tushaar_> Sigmoid: g(z) = 1/(1+e^(-z)).
+19:33 < aryanhimanshu> ok ok got it
+19:33 < tushaar_> Now, h(X) for logistic = g(h(X) for linear)
+19:33 < tushaar_> Cool.
+19:34 < tushaar_> Consider any example (of any binary classification),
+19:34 < tushaar_> h(X) = estimated probability that Y = 1 on input X = 0.7 (Say).
+19:34 < tushaar_> What can you deduce from this?
+19:35 < aryanhimanshu> > 0.5 
+19:35 < aryanhimanshu> so positive class
+19:35 < tushaar_> Positive class is right.
+19:36 < tushaar_> But, this means that, there is 70% chance of the data-point being in the “Positive Class”.
+19:36 < aryanhimanshu> yes
+19:36 < tushaar_> Get it?
+19:36 < tushaar_> Now, h(X) = P(Y = 1 | X ; θ0, θ1) – Probability that Y = 1, for some input X parameterized by  θ0, θ1.
+19:37 < tushaar_> which was 0.7 in the previous example.
+19:37 < tushaar_> Correct?
+19:37 < aryanhimanshu> yes
+19:37 < tushaar_> So, P(Y = 0 | X ; θ0, θ1) + P(Y = 1 | X ; θ0, θ1) = 1.
+19:37 < tushaar_> So, P(Y = 0 | X ; θ0, θ1) = 1 - P(Y = 1 | X ; θ0, θ1).
+19:37 < tushaar_> Clear?
+19:38 < aryanhimanshu> yes total probablity
+19:38 < aryanhimanshu> =1
+19:38 < tushaar_> Good. The, next concept involves decision boundaries:
+19:38 < tushaar_> The, sigmoid function g(z), gives a value >= 0.5 whenever z is positive.
+19:39 < tushaar_> g( θ0 + θ1X) >= 0.5, whenever  θ0 + θ1X >= 0.
+19:39 < tushaar_> So, setting a “threshold” of 0.5, gives us:
+19:39 < tushaar_>  If a value of ‘z’ is >= 0, then it predicts ‘1’, else predicts ‘0’.
+19:39 < tushaar_> Clear?
+19:39 < aryanhimanshu> yes
+19:40 < tushaar_> Next, consider this: https://s29.postimg.org/9r0pxwlif/ML_Session_04_06.png
+19:40 < tushaar_> We are already given the h(X) and the data-set.
+19:41 < tushaar_> As we did earlier, let's substitute value for the parameters.
+19:41 < tushaar_> Now, let us assume, θ0= -3, θ1 = 1, θ2 = 1.
+19:41 < tushaar_> So, we predict “Y = 1”, whenever -3 + X1 + X2 >= 0 (from the previous result).
+19:42 < tushaar_> So, we have “Y = 1”, whenever X1 + X2 >= 3.
+19:42 < tushaar_> Which is a straight-line passing through (X1, X2) = (3, 3).
+19:42 < tushaar_> Take a look: https://s28.postimg.org/mvksqks5p/ML_Session_04_07.png
+19:43 < tushaar_> Is it clear?
+19:43 < aryanhimanshu> yes
+19:43 < tushaar_> So, the region above the “magenta” line corresponds to “Y = 1”.
+19:44 < tushaar_> Region below corresponds to “Y = 0”. 
+19:44 < aryanhimanshu> why we assumes -3 in first place??
+19:44 < tushaar_> Concretely, the “magenta” line is called the “Decision Boundary” where h(X) = 0.5.
+19:44 < aryanhimanshu> assumed
+19:44 < tushaar_> Just a random assumption, to perfectly classify the given data-set.
+19:44 < aryanhimanshu> ok
+19:45 < tushaar_> We can apply, gradient-descent and other methods, but this is the brute-force approach.
+19:45 < tushaar_> We'll get to gradient-descent soon.
+19:46 < aryanhimanshu> ok
+19:46 < tushaar_> We also have, “Non-Linear Decision Boundaries”, an example of which is shown here: https://s29.postimg.org/42ges073b/ML_Session_04_08.png
+19:47 < tushaar_> (h(X) = g(θ0 + θ1X1 + θ2X2 + θ3X1^2 + θ4X2^2) – Given.
+19:47 < tushaar_> So, let us similarly assign values.
+19:47 < tushaar_> Consider θ0 = -1; θ1 = 0; θ2 = 0; θ3 = 1; θ4 = 1.
+19:47 < tushaar_> So, we get, -1 + X1^2 + X2^2 >= 0.
+19:47 < tushaar_> So, we get a circle with: X1^2 + X2^2 >= 1.
+19:48 < tushaar_> That's what has been depicted there.
+19:48 < tushaar_> Clear?
+19:48 < aryanhimanshu> yes
+19:48 < tushaar_> Note that, “Decision Boundary” is a property of the hypothesis, which means that we can create a boundary with the hypothesis and parameters without any data.
+19:49 < aryanhimanshu> agreed
+19:49 < tushaar_> If we recall, for linear regression, 
+19:49 < tushaar_> Cost-Function J(θ0, θ1) = 1/2m sigma ((h(Xi) – Yi)^2), where h(Xi) = θ0 + θ1Xi.
+19:49 < tushaar_> Now, say, (h(Xi) – Yi)^2 = cost(h(Xi), Yi).
+19:49 < tushaar_> So, J(θ0, θ1) = 1/2m sigma (cost(h(Xi), Yi)).
+19:49 < tushaar_> Correct?
+19:50 < aryanhimanshu> yup
+19:50 < tushaar_> So, cost(h(Xi), Yi), where h(X) is “Sigmoid” function, which is a non-linear function, which when substituted, forms a “Non-Convex” function
+19:50 < tushaar_> with many local optimium (unlike in linear regression, where we have a “Convex” function, (parabolic function) with one optimum value).
+19:51 < tushaar_> Take a look: https://s24.postimg.org/z0qxp6b45/ML_Session_04_09.png
+19:51 -!- Hent [67e8809b@gateway/web/freenode/ip.103.232.128.155] has joined #wc-ml1
+19:52 < tushaar_> So, running a gradient-descent would not guarantee the convergence to global minimum. 
+19:52 < tushaar_> Correct?
+19:53 < aryanhimanshu> yes
+19:53 < tushaar_> So, we need a new Cost-Function that is “Convex”.
+19:53 < tushaar_> Now, consider this:
+19:53 < tushaar_> cost(h(X), Y) :=
+19:53 < tushaar_> := -log(h(X)) 	if Y = 1;
+19:53 < tushaar_> := -log(1 - h(X))  if Y = 0;
+19:54 < tushaar_> Let us plot this function out: https://s27.postimg.org/w1qlpisib/ML_Session_04_10.png
+19:55 < tushaar_> Now, isn't that a "convex" cost-function?
+19:55 -!- Hent [67e8809b@gateway/web/freenode/ip.103.232.128.155] has quit [Ping timeout: 260 seconds]
+19:56 < aryanhimanshu> yes it is
+19:57 < tushaar_> Now, let's see a few of it's properties:
+19:57 < tushaar_> In figure-1, the cost = 0, when Y = 1 and h(X) = 1.
+19:57 < tushaar_> But, as h(X) -> 0 and Y = 1, then cost -> infinity.
+19:58 < tushaar_> i.e., predict P(Y = 1 | X ; θ0, θ1) = 0, but Y = 1, we’ll penalize the learning algorithm by a very large cost.
+20:00 < aryanhimanshu> how?
+20:01 < tushaar_> Which one?
+20:01 < tushaar_> Last part?
+20:01 < aryanhimanshu> penalize the learning algorithm
+20:01 < tushaar_> See, when you say Y = 1, you imply that the patient has malignant tumor.
+20:01 < aryanhimanshu> how will we do that?
+20:02 < aryanhimanshu> ok
+20:02 < tushaar_> Now, what we are saying is there is no malignant tumor itself.
+20:02 < tushaar_> P(Y = 1 | X ; θ0, θ1) = 0
+20:02 < tushaar_> Correct?
+20:02 < aryanhimanshu> yes
+20:03 < tushaar_> cost = The error value, right?
+20:03 < aryanhimanshu> yes
+20:04 < tushaar_> Since my algorithm is predicting 'wrong' assumptions, the cost becomes infinity, in that case.
+20:04 < tushaar_> Like penalty.
+20:04 < aryanhimanshu> ok got it
+20:04 < tushaar_> Cool.
+20:05 < tushaar_> In figure-2, same as in the above case, we have cost -> infinity whenever h(X) -> 1 and Y = 0.
+20:06 < tushaar_> So, now the overall Cost-Function will be a “Convex” function for logistic regression and “Gradient-Descent” can be easily applied to it.
+20:07 < tushaar_> Cool?
+20:07 < aryanhimanshu> yup
+20:08 < tushaar_> So, the overall Cost-Function will be: J(θ0, θ1) = 1/m sigma(Y * -log(h(Xi)) + (1 - Y) * -log(1 - h(Xi))). 
+20:09 < tushaar_> Cool?
+20:09 < aryanhimanshu> yes
+20:10 < tushaar_> That's the end of "Logistic Regression".
+20:10 < tushaar_> Case Study - Read this:
+20:10 < tushaar_> Logistic Regression: Why sigmoid function? 
+20:10 < tushaar_> https://www.quora.com/Logistic-Regression-Why-sigmoid-function
+20:10 < tushaar_> Consider it as an assignment.
+20:11 < tushaar_> Now, let's move on to 'Python'.
+20:11 < tushaar_> I don't know, if I'll be able to show you some code, in the future sessions of ML, but this'll help you.
+20:12 < tushaar_> So, python - 2.7 tutorial.
+20:12 < tushaar_> How many Ubuntu users?
+20:12 < aryanhimanshu> mac
+20:12 < tushaar_> Python, installed?
+20:13 < aryanhimanshu> yes
+20:13 < tushaar_> 'pip' installed?
+20:13 < aryanhimanshu> no
+20:14 < tushaar_> brew?
+20:15 < aryanhimanshu> no
+20:15 < tushaar_> For now, have a look at this: https://github.com/TushaarGVS/ML-WebClub-Mentorship/blob/master/Python_Basics.py
+20:15 < tushaar_> Also, use: https://www.pythonanywhere.com/try-ipython/ (or) https://www.tutorialspoint.com/ipython_terminal_online.php
+20:16 < tushaar_> Fine?
+20:16 < aryanhimanshu> yes
+20:16 < tushaar_> Did you open the Python_Basics.py file?
+20:17 < aryanhimanshu> yes
+20:17 < tushaar_> Now, open any of the links, ipython or tutorials point.
+20:18 < tushaar_> Done?
+20:18 < aryanhimanshu> yes
+20:18 < tushaar_> code: 6 - 16.
+20:18 < tushaar_> There are no data-types in Python.
+20:19 < tushaar_> print() is used as printf("").
+20:19 < tushaar_> You're familiar with 'C', right?
+20:19 < aryanhimanshu> yes
+20:19 < tushaar_> Cool.
+20:19 < tushaar_> Now, we have, bool, int, float, string.
+20:20 < tushaar_> type('WebClub') returns String
+20:20 < tushaar_> code: 20, 22.
+20:20 < tushaar_> Strings have some special features unlike in 'C'.
+20:21 < tushaar_> concatenate: str1 + str2.
+20:21 < tushaar_> Indexing is the same as in 'C'.
+20:21 < tushaar_> But, negative indexing is new.
+20:21 < tushaar_> str[-1] returns the last character.
+20:22 < tushaar_> There's Slicing: str[0:4] -> gives: str[0] till str[3].
+20:22 < aryanhimanshu> great
+20:22 < tushaar_> len(str) gives length.
+20:23 < tushaar_> There are methods and functions in Python.
+20:23 < tushaar_> len(), max(), type() -> functions.
+20:24 < tushaar_> list.append(), list.pop() -> methods.
+20:24 < tushaar_> That was code: 26 - 40.
+20:24 < tushaar_> Next, lists are similar to arrays.
+20:24 < aryanhimanshu> ok
+20:25 < tushaar_> Code: 44 - 46.
+20:25 < tushaar_> the following lines: 50 - 56 are self explanatory.
+20:25 < tushaar_> Next, we have tuples.
+20:26 < tushaar_> Tuples are same as lists, but are immutable.
+20:26 < tushaar_> Note: Never call lists as arrays in Python, as we have arrays under 'numpy' package.
+20:26 < tushaar_> Clear?
+20:26 < aryanhimanshu> list2 = [7, 'WebClub', True, 3.14] non-homogenous list??
+20:26 < tushaar_> Yes.
+20:27 < tushaar_> Unlike arrays.
+20:27 < aryanhimanshu> ok
+20:27 < tushaar_> Code - 52, adds 'Squares' to the homogeneous list.
+20:28 < aryanhimanshu> ok
+20:28 < tushaar_> Next, in tuples, append() and pop() will not work.
+20:28 < tushaar_> Because, it is immutable,
+20:29 < tushaar_> We have to completely delete a tuple.
+20:29 < tushaar_> del tuple.
+20:29 < tushaar_> Next, dictionaries.
+20:29 < tushaar_> Code: 67 - 68.
+20:29 < tushaar_> It's like a map, that maps two things.
+20:29 < tushaar_> Clear?
+20:30 < aryanhimanshu> yes
+20:30 < tushaar_> Next, we have loops.
+20:30 < tushaar_> for, while.
+20:30 < tushaar_> if-elif-else.
+20:30 < tushaar_> Note that, we don't have {} in Python,
+20:31 < aryanhimanshu> ok
+20:31 < tushaar_> So, we need to indent properly.
+20:31 < tushaar_> Check Code: 77 - 86.
+20:32 < aryanhimanshu> done
+20:32 < tushaar_> All the if-elif-else statements must end with ':' and statement that comes after this must be indented with a [:tab:].
+20:32 < tushaar_> Next, for loop:
+20:32 < tushaar_> Code: 88 - 96.
+20:33 < tushaar_> i ** 2 = i^2.
+20:33 < aryanhimanshu> ok
+20:33 < tushaar_> Now, Prog1 - prints: 1, 4, 9, 16, 25.
+20:33 < tushaar_> Correct?
+20:34 < tushaar_> What does Prog-2 print?
+20:34 < aryanhimanshu> same
+20:34 < tushaar_> Correct.
+20:34 < tushaar_> Moving on.
+20:35 < tushaar_> Note that range(0,10) doesn't include value 10.
+20:35 < aryanhimanshu> ok
+20:35 < tushaar_> Same as list[0:10] doesn't include list[10].
+20:35 < aryanhimanshu> noted
+20:35 < tushaar_> Next, we have while.
+20:36 < tushaar_> Also followed by ':' and indented.
+20:36 < tushaar_> break and continue are similar to 'C'.
+20:37 < aryanhimanshu> ok
+20:37 < tushaar_> Now, if we have 2 lists, we use 'zip' to traverse.
+20:37 < tushaar_> Code: 107 - 110.
+20:37 < tushaar_> Cool?
+20:37 < aryanhimanshu> what if no of elements are unequal??
+20:38 < tushaar_> Next, we have functions: keyword: 'def'.
+20:39 < tushaar_> @aryan, it only prints in pairs, so the least number of elements get printed.
+20:39 < aryanhimanshu> ok
+20:40 < tushaar_> Code: 114 - 118.
+20:40 < aryanhimanshu> done
+20:40 < tushaar_> Clear, right?
+20:41 < aryanhimanshu> yes
+20:41 < tushaar_> Next, modules: Code: 124 - 135. 
+20:41 < tushaar_> Modules are just program files, by importing these files, the functions can be reused.
+20:42 < tushaar_> I'm assuming that you know, 'Sieve of Eratosthenes' for finding if a number is prime.
+20:42 < aryanhimanshu> yes i do
+20:43 < tushaar_> So, prime() is clear?
+20:43 < tushaar_> Or shall I explain?
+20:44 < aryanhimanshu> clear
+20:44 < tushaar_> Cool.
+20:44 < tushaar_> Next, import.
+20:44 < tushaar_> Code: 139 - 150.
+20:45 < tushaar_> import is like #include "stdlib.h".
+20:45 < aryanhimanshu> import file.py  
+20:45 < aryanhimanshu> odd(5)
+20:45 < tushaar_> Correct.
+20:45 < aryanhimanshu> will also work??
+20:45 < tushaar_> No.
+20:46 < tushaar_> Because, in file.py, what do you import?
+20:46 < tushaar_> Import odd.
+20:46 < tushaar_> You could say, "from file.py import odd".
+20:46 < tushaar_> Or use: "file.odd(5)".
+20:46 < aryanhimanshu> ok now i got the difference
+20:47 < tushaar_> Cool.
+20:47 < tushaar_> Next, we have the thing that's most related to ML.
+20:48 < tushaar_> Take a look at code: 160 - 164.
+20:48 < tushaar_> Image/Output: https://s30.postimg.org/3zyyzo6u9/Pyplot_Plot_1.png
+20:48 < aryanhimanshu> ok
+20:49 < tushaar_> Now, for a scatter plot, have a look at code: 168 - 172.
+20:49 < tushaar_> Image/Output: https://s27.postimg.org/c8emvvblf/Pyplot_Plot_2.png
+20:50 < tushaar_> Clear?
+20:50 < tushaar_> The only change is plt.scatter().
+20:50 < aryanhimanshu> ok
+20:50 < tushaar_> Histograms.
+20:51 < tushaar_> They are also data-representation aids.
+20:51 < tushaar_> Have a look at code: 176 - 181.
+20:51 < tushaar_> Also, note that in python: help() function, is like a mini manual page.
+20:52 < aryanhimanshu> ok
+20:52 < tushaar_> You can also use $ pydoc sys and $ pydoc os.
+20:52 < tushaar_> Now, for the last part of the code.
+20:53 < tushaar_> Look at code: 185 - 195.
+20:53 < aryanhimanshu> do you have output for histogram?
+20:53 < tushaar_> Sorry, my bad.
+20:54 < tushaar_> Here, Image/Output: https://s30.postimg.org/8kd8lnq6p/Pyplot_Plot_3.png
+20:54 < aryanhimanshu> never mind
+20:54 < tushaar_> Did I show the scatter plot?
+20:54 < aryanhimanshu> yes
+20:54 < tushaar_> So, clear with histograms?
+20:54 < aryanhimanshu> i guess so
+20:55 < tushaar_> Bins = no. of divisions.
+20:55 < tushaar_> Cool, you'll get a hang of it.
+20:55 < aryanhimanshu> can you send scatter plot again?
+20:55 < tushaar_> Scatter Plot: https://s27.postimg.org/c8emvvblf/Pyplot_Plot_2.png
+20:56 < tushaar_> Clear.
+20:56 < aryanhimanshu> the histogram is for this function only??
+20:56 < tushaar_> Now, code: 176 - 181.
+20:56 < tushaar_> Yes.
+20:57 < aryanhimanshu> ok
+20:57 < tushaar_> It's approximated.
+20:58 < aryanhimanshu> ok
+20:58 < tushaar_> Next part: fill_between, xlabel, ylabel, yticks and title.
+20:58 < tushaar_> Image/Output: https://s29.postimg.org/dkycj1tqv/Pyplot_Plot_4.png
+20:59 -!- shasha [67d0814d@gateway/web/freenode/ip.103.208.129.77] has quit [Ping timeout: 260 seconds]
+20:59 < tushaar_> xlabel and ylabel are the axis names.
+20:59 < tushaar_> title = graph title.
+21:00 < tushaar_> fill_between = to color the required portion.
+21:00 < tushaar_> Here starting from '0'.
+21:00 < tushaar_> Next, yticks: What is to be shown on Y-axis.
+21:00 < tushaar_> Like co-ordinates.
+21:01 < tushaar_> plt.yticks([0, 2, 4, 6, 8, 10]) <- if only this is given then it shows 0, 2, 4, .. on the axis.
+21:03 < tushaar_>  plt.yticks(['0', '2B', '4B', '6B', '8B', '10B']) <- throws an error.
+21:04 < tushaar_> plt.yticks([1, 3, 5, 7, 9, 11],['0', '2B', '4B', '6B', '8B', '10B']) <- throws error.
+21:04 < tushaar_> Clear?
+21:05 < tushaar_> We can use python filename.py to run from a file.
+21:08 < tushaar_> Further References:
+21:08 < tushaar_> https://plot.ly/matplotlib/ 
+21:08 < tushaar_> http://matplotlib.org/
+21:08 < tushaar_> https://www.getdatajoy.com/learn/Matplotlib_Basics
+21:09 < tushaar_> So, that's all for this session, see you in the next one.
+21:09 < tushaar_> Aryan, do you want the answers to the Assignment?
+21:16 < tushaar> 1. Regression.
+21:16 < tushaar> 2. Regression.
+21:16 < tushaar> 3. Option-D.
+21:16 < tushaar> 4. Option-C.
+21:17 < tushaar> So, have a good night, see you soon.
+21:17 < tushaar> Thanks for attending the session.
+21:17 -!- tushaar [~tushaar@157.49.135.193] has left #wc-ml1 []
+--- Log closed Tue Dec 20 21:17:17 2016
