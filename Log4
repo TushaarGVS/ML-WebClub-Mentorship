@@ -98,7 +98,7 @@
 19:38 < tushaar_> The, sigmoid function g(z), gives a value >= 0.5 whenever z is positive.
 19:39 < tushaar_> g( θ0 + θ1X) >= 0.5, whenever  θ0 + θ1X >= 0.
 19:39 < tushaar_> So, setting a “threshold” of 0.5, gives us:
-19:39 < tushaar_>  If a value of ‘z’ is >= 0, then it predicts ‘1’, else predicts ‘0’.
+19:39 < tushaar_> If a value of ‘z’ is >= 0, then it predicts ‘1’, else predicts ‘0’.
 19:39 < tushaar_> Clear?
 19:39 < aryanhimanshu> yes
 19:40 < tushaar_> Next, consider this: https://s29.postimg.org/9r0pxwlif/ML_Session_04_06.png
