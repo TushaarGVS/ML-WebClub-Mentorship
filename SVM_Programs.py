@@ -21,7 +21,8 @@ x, y = digits.data[:-1], digits.target[:-1]
 # training data-set is set up, with data-set (from start till end ([:-1]))
 
 clf.fit(x, y) # fits a line through the data-set
-print('Prediction: ', clf.predict(digits.data[-1])) # prediction done here
+print('Prediction: ', clf.predict(digits.data[-1])) 
+# prediction for last element is done here
 
 plt.imshow(digits.images[-1], cmap = plt.cm.gray_r, interpolation = "nearest")
 # imshow = shows images, 'cmap' is just blowing up the image to a larger size
