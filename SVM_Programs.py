@@ -32,7 +32,7 @@ plt.show()
 x, y = digits.data[:-10], digits.target[:-10]
 
 clf.fit(x, y)
-print('Prediction: ', clf.predict(digits.data[-4])))  # prediction done here
+print('Prediction: ', clf.predict(digits.data[-4]))  # prediction done here
 
 plt.imshow(digits.images[-4], cmap = plt.cm.gray_r, interpolation="nearest")  
 plt.show()
