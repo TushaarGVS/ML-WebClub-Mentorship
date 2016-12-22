@@ -302,8 +302,7 @@
 21:46 < aryan_himanshu> z=|y|
 21:47 < chennakeshava> y=x^2 + c can be y = T +c , is it like this?
 21:47 < tushaar_> Now, final thing before we wind up.
-21:47 < tushaar_> @chennakeshava, yeah!
-21:47 < chennakeshava> there is a coefficient beside the x^2
+21:47 < tushaar_> @chennakeshava, yeah!, but that's not the answer though.
 21:48 < tushaar_> Since, we have seen a lot of learning algorithms, I don't expect you to remember each one of it.
 21:48 < tushaar_> And apply it precisely.
 21:48 < tushaar_> Here's scikit-learn's cheat sheet: https://s30.postimg.org/hq6thhl2p/ML_Session_05_01.png
