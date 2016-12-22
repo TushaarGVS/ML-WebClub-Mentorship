@@ -1,6 +1,14 @@
 # Python - 2.x tutorial:
 # Note: Indentation is the heart of Python Programming Language
 
+# The following Python Dependencies must be installed for Data Science:
+
+# sudo apt-get install python-pip
+# sudo -H pip install numpy
+# sudo -H pip install scipy
+# sudo -H pip install matplotlib
+# sudo -H pip install scikit-learn
+
 # Variables:
 
 int_var = 5 # Integer
@@ -123,7 +131,7 @@ odd(4) # function call - returns 'False'
 
 # file.py = filename
 def odd(num):
-    if num%2:
+    if (num % 2 != 0):
        return True
     else:
        return False
@@ -132,7 +140,8 @@ def prime(n):
      for i in range(2,int(math.ceil(math.sqrt(n)))):
              if n%i == 0:
                 return False
-     return True
+            else:
+                return True
 
 # Importing: (similar to #include <stdio.h>)
 
@@ -149,7 +158,7 @@ prime(5)
 from file import prime as function # importing 'prime' as 'function'
 function(5)
 
-# classes and file-management is 'not' discussed here
+# classes and file-management concepts are 'not' discussed here
 
 # Using Python for Data-Science:
 
