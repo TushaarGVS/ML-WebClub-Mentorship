@@ -1,0 +1,313 @@
+20:04 < tushaar> Welcome to Machine Learning - Session 05.
+20:08 < tushaar> So, did you check your answers @aryan?
+20:09 <@aryanhimanshu> Yes
+20:11 < tushaar> So, any doubts?
+20:11 <@aryanhimanshu> Nope
+20:11 <@aryanhimanshu> All good
+20:11 < tushaar> I hope everyone has gone through whatever's been taught?
+20:12 <@aryanhimanshu> Any suggestions on from where can I learn about more Python libraries??
+20:13 < tushaar_> For ML, you'll need, matplotlib and scikit-learn.
+20:13 < tushaar_> I'll give links by the end of this session.
+20:13 <@aryanhimanshu> Ok
+20:13 < tushaar_> So, let's get stated.
+20:14 < tushaar_> So, we've seen a bunch of ML algorithms, till now.
+20:14 < tushaar_> Can anyone name all (or most) of them?
+20:15 < tushaar_> No one?
+20:16 < tushaar_> Today we'll be looking at another algorithm.
+20:17 <@aryanhimanshu> Gradient descent
+20:17 <@aryanhimanshu> Batch gradient descent
+20:17 <@aryanhimanshu> Logistic regression
+20:17 < tushaar_> Good @Aryan.
+20:18 <@aryanhimanshu> Decision boundary is also an algorithm??
+20:18 < tushaar_> All of you, please respond when asked to.
+20:18 < tushaar_> No @aryan.
+20:18 <@aryanhimanshu> Ok
+20:18 < tushaar_> They are a part of 'logistic' regression.
+20:19 <@aryanhimanshu> That is what I was thinking. :)
+20:19 < tushaar_> Before going on to SVM, a little analogy could help us out.
+20:19 < tushaar_> Think of ‘Regression’ as a sword capable of slicing and dicing data efficiently, but incapable of dealing with highly complex data.
+20:20 < tushaar_> Now, about SVM!
+20:20 < tushaar_> 'Support Vector Machines’ is like a sharp knife – it works on smaller datasets, but on them, it can be much more stronger and powerful in building models.
+20:21 < tushaar_> Falls under 'Supervised Learning'!
+20:21 < tushaar_> What is SVM?
+20:21 <@aryanhimanshu> Support vector machines
+20:21 < tushaar_> I don't want some formal definition, layman terms would do.
+20:21 < tushaar_> Yeah @aryan, what are those?
+20:22 < tushaar_> @Ashu? @Shivan?
+20:23 < tushaar_> Ok, so? Is that a "No"?
+20:23 <@aryanhimanshu> Learning models
+20:23 < tushaar_> “SVM” is a supervised learning algorithm which can be used for both ‘Classification’ as well as for ‘Regression’, but is mostly used in ‘Classification’ problems.
+20:24 < tushaar_> Correct @Aryan
+20:24 <@aryanhimanshu> Ok
+20:24 < Shivan> Ok
+20:24 < tushaar_> SVM is also an ML model, more accurate and works with the help of support vectors.
+20:25 < tushaar_> Before explaining what support vectors are, take a look at:
+20:25 < tushaar_> https://s30.postimg.org/lep4dle9t/ML_Session_05_02.png
+20:26 < tushaar_> @Shivan, tell me, what do you think support vectors are from the image.
+20:27 < Shivan> Some examples 
+20:27 < tushaar_> Yes. More specifically the closest ones to the "line".
+20:27 < Shivan> Yeah
+20:28 < tushaar_> They are like the "Support" points to holding the line.
+20:28 < tushaar_> As far as the algorithm is concerned, 
+20:28 < tushaar_> In this algorithm, we plot each data item as a point in n-dimensional space, where n = no. of features (like in ‘cancer’ problem, we had, ‘tumor size’) = coordinates.
+20:29 < tushaar_> Then, we perform classification by finding the “hyper-plane” (sice, we’re talking in an ‘n’ dimensional space) that differentiate the two classes very well.
+20:29 < Shivan> Ok
+20:30 < tushaar_> Any doubts?
+20:31 <@aryanhimanshu> No
+20:31 < chennakeshava> how can we fix these points as supports initially? can't we have examples which might be closer than them to the line, but still belong to a particular category?
+20:32 < tushaar_> @chennakeshava you're talking about the test set of the analysis, right?
+20:32 < chennakeshava> yes
+20:32 < tushaar_> So, test set, is unknown to us.
+20:33 < tushaar_> Now, our duty is only to make a model that reduces the error as far as possible.
+20:33 < chennakeshava> ok...
+20:33 < tushaar_> And that is exactly what we do.
+20:33 < tushaar_> Inspite of which we might still predict "wrong" assumptions.
+20:33 < tushaar_> Is it clear?
+20:33 < chennakeshava> yes, i got it
+20:33 < Shivan> Yes
+20:34 < tushaar_> Now the burning question is “How can we identify the right hyper-plane?”.
+20:34 < tushaar_> I'll be giving out scenarios and you'll tell me the choice of hyper-planes.
+20:34 < tushaar_> Is that cool with everyone?
+20:34 < Shivan> Yeah
+20:35 < chennakeshava> yeah
+20:35 < tushaar_> 1. Identify the right hyper-plane (Scenario – 1): https://s30.postimg.org/ywxcia3rl/ML_Session_05_03.png
+20:35 < chennakeshava> B
+20:35 < tushaar_> And why?
+20:36 < chennakeshava> Becoz it stays clear from the data points, doesn't strike anyone of them
+20:36 < tushaar_> Perfect. So, thumb rule: Select the hyper-plane that segregates the two classes better, here ‘B’.
+20:36 < Shivan> Ok
+20:37 < tushaar_> Next scenario.
+20:37 < tushaar_> Wait, before that, 2 concepts of major importance.
+20:37 < tushaar_> Overfitting and Underfitting of data.
+20:38 < tushaar_> Have a look: https://s23.postimg.org/ghxyuxk57/ML_Session_05_09.png
+20:39 < Shivan> Got it
+20:39 < tushaar_> Overfitting: While the line best follows the training data, it is too dependent on it and it is likely to have a higher error rate on new unseen data, compared to the black line.
+20:39 < tushaar_> Underfitting: Underfitting refers to a model that can neither model the training data nor generalize the new data efficiently.
+20:40 < tushaar_> These concepts must be very clear to you, as a ML enthusiast.
+20:41 < tushaar_> Because your model must have a perfect statistical fit to avoid mis predictions.
+20:41 < tushaar_> Is that clear?
+20:41 < chennakeshava> yes
+20:41 < Shivan> Yeah
+20:41 < tushaar_> Good, moving on.
+20:42 < tushaar_> 2. Identify the right hyper-plane (Scenario – 2): https://s30.postimg.org/aumfzyzgx/ML_Session_05_04.png
+20:42 < chennakeshava> C
+20:42 < Shivan> I think any of them
+20:42 <@aryanhimanshu> C
+20:43 < tushaar_> chennakeshava and aryan, explain please.
+20:43 < tushaar_> Layman terms would do.
+20:43 <@aryanhimanshu> C is more fitted for new data that may come next
+20:44 <@aryanhimanshu> And is equidistant to both Starr and circle
+20:44 < tushaar_> @Shivan you're correct for present training set, think in terms of test set.
+20:44 < chennakeshava> I think so becoz, there is a greater distance between the points and the line, so more clarity for the unknown cases(non-training set of data)
+20:44 < tushaar_> @aryan link it to the above concepts.
+20:45 < tushaar_> Both of you are correct.
+20:45 < tushaar_> Base reason: avoid over-fitting of data
+20:45 < tushaar_> Fancy name: 'Margin'.
+20:45 < tushaar_> Here, maximizing the distance between nearest data-point (in each class) and the hyper-plane, will help us decide the correct hyper-plane (to avoid over-fitting of data).
+20:45 < tushaar_> This distance is called “Margin”.
+20:46 < chennakeshava> how can we know if a model is overfitting the data, is it only by graphs?
+20:46 < tushaar_> Yes, @chennakeshava.
+20:46 < Shivan> Ok
+20:46 < tushaar_> It is clear that 'B' is too close to 'star' as to taking in any new 'star'.
+20:47 < tushaar_> Am I correct?
+20:47 < chennakeshava> yes
+20:47 < Shivan> Yes 
+20:47 <@aryanhimanshu> Yes
+20:49 -!- aryan_himanshu [1bffbbbb@gateway/web/freenode/ip.27.255.187.187] has joined #wc-ml1
+20:49 < tushaar_> Good, next!
+20:50 < tushaar_> 3. Identify the right hyper-plane (Scenario – 3): https://s23.postimg.org/aqptnovgb/ML_Session_05_05.png
+20:50 < chennakeshava> B
+20:50 < tushaar_> Before you proceed, please account for both "margin" and "thumb" rule.
+20:51 < tushaar_> Chennakeshava,explain!
+20:51 < chennakeshava> B has more margin than A which goes very close to the points
+20:51 -!- Shivan_ [2f08435e@gateway/web/freenode/ip.47.8.67.94] has joined #wc-ml1
+20:51 < tushaar_> Everyone else, please make your choices.
+20:51 < Shivan_> A
+20:51 < aryan_himanshu> b
+20:51 < chennakeshava> and apart from one point there is clear segregation
+20:52 < tushaar_> Shivan is correct.
+20:52 < Shivan_> Can you send link again
+20:52 < tushaar_> https://s23.postimg.org/aqptnovgb/ML_Session_05_05.png
+20:52 < Shivan_> Thnks
+20:52 < tushaar_> 'B' doesn't have clear segregation.
+20:53 < tushaar_> The primary goal is to classify!
+20:53 < chennakeshava> ok..yeah
+20:53 < aryan_himanshu> ok
+20:53 < tushaar_> According to the thumb rule, the hyper-plane looks like ‘A’, but according to the “Margin” rule, it looks like ‘B’ is the correct one. 
+20:53 < tushaar_> But, clearly, 'A' is the answer.
+20:54 < tushaar_> 4. Can we classify the two classes? (Scenario – 4): https://s24.postimg.org/99shl9q9h/ML_Session_05_06.png
+20:54 -!- Shivan [2f08435e@gateway/web/freenode/ip.47.8.67.94] has quit [Ping timeout: 260 seconds]
+20:54 < tushaar_> A 'YES' or a 'NO'? 
+20:54 < tushaar_> Elaborate!
+20:55 < chennakeshava> Yes, but for one point 
+20:55 < tushaar_> Others?
+20:55 < Shivan_> Yes
+20:56 < tushaar_> Answer: Yes!
+20:56 < aryan_himanshu> yes
+20:57 < tushaar_> As already mentioned, one star at other end is like an outlier for star class. SVM has a feature to ignore outliers and find the hyper-plane that has maximum margin that will be a line that separates the stars and the (circles + star) class.
+20:57 < tushaar_> Last and the most important scenario.
+20:58 < Shivan_> So we can ignore some of them
+20:58 < tushaar_> Yes.
+20:58 < Shivan_> Ok
+20:58 < tushaar_> We need to do the 'best' possible prediction.
+20:58 < tushaar_> That's the only way, without 'Overfitting' the data.
+20:58 < Shivan_> Om
+20:58 < Shivan_> Ok
+20:59 < tushaar_> 5. Find the hyper-plane to classify the two classes (Scenario – 5): https://s23.postimg.org/hvg3drjyz/ML_Session_05_07.png
+20:59 < Shivan_> No
+21:00 < tushaar_> For those who have attended the last session, 'do not' use decision boundary concept.
+21:00 < tushaar_> Come up with something else.
+21:00 < chennakeshava> A circle or an ellipse around the red points
+21:00 < tushaar_> @Shivan, I'm afraid not.
+21:00 < Shivan_> Ok
+21:00 < tushaar_> And @Chennakeshava you're correct - Non-linear SVM.
+21:01 < aryan_himanshu> we can have multiple hyperplanes?
+21:01 < tushaar_> But, that's not how SVM works.
+21:01 < tushaar_> No @aryan.
+21:01 < tushaar_> I'll give away a hint: Try linear SVM fit.
+21:02 < tushaar_> Just the way I showed you in Multiple linear regression.
+21:02 < tushaar_> @aryan, anything?
+21:03 < tushaar_> I think, even shivan attended, so @shivan?
+21:03 < aryan_himanshu> yes
+21:03 < aryan_himanshu> one way
+21:03 < tushaar_> Go ahead!
+21:03 < aryan_himanshu> take |x| and |y|
+21:04 < tushaar_> Then I'll have a semi-circle.
+21:04 < aryan_himanshu> then we can construct a single hyperplane
+21:04 < tushaar_> You're close though.
+21:04 < tushaar_> I want a 'Straight-line'!
+21:05 < tushaar_> Remember, I said that Y = mX^2 = mT, where T = X^2?
+21:05 < tushaar_> What is Y = mT?
+21:06 < chennakeshava> nice !
+21:06 < tushaar_> Now, the same concept!
+21:06 < tushaar_> We now take: Z = X^2 + Y^2.
+21:07 < tushaar_> Plot Z vs X: https://s29.postimg.org/nuoq7htyf/ML_Session_05_08.png
+21:07 < tushaar_> Thus, SVM can solve this problem easily! It solves this problem by introducing additional feature. Here, we will add a new feature Z = X^2 + Y^2.
+21:07 < tushaar_> Now, can we draw a 'Straight-line' through the graph?
+21:08 < chennakeshava> yeah
+21:08 < Shivan_> Yes
+21:09 < tushaar_> In SVM, it is easy to have a linear hyper-plane between these two classes, using the above 'trick'.
+21:09 < tushaar_> But, another burning question which arises is, should we need to add this feature manually to have a hyper-plane.
+21:09 < tushaar_> No, SVM has a technique called the ‘Kernel trick’ to do the same.
+21:10 < chennakeshava> what is the advantage of doing this?
+21:11 < tushaar_> It is always hassle free to work with linear data, rather than increase the dimensions, right?
+21:11 < aryan_himanshu> @chennakeshava we are able to model a complex problem in a simpler manner
+21:11 < chennakeshava> ok...
+21:11 < aryan_himanshu> yes @tushar
+21:12 < tushaar_> Now, these are functions which takes low dimensional input space and transform it to a higher dimensional space i.e. it converts not separable problem to separable problem, these functions are called ‘Kernels’.
+21:13 < tushaar_> It is mostly useful in non-linear separation problem.
+21:14 < Shivan_> Ok
+21:14 < chennakeshava> ok
+21:15 < tushaar_> We have linear, rbf kernel and so on.
+21:15 < tushaar_> RBF = Radial basis function.
+21:16 < tushaar_> You learnt about 'gaussian' surfaces, the same!
+21:16 < tushaar_> Kernels are mostly useful in non-linear separation problem.
+21:16 < tushaar_> Is this clear?
+21:17 < Shivan_> Yeah
+21:17 < chennakeshava> yeah
+21:18 < tushaar_> I'll be giving an 'Assignment' in the end, so remind me.
+21:19 < Shivan_> But there should be cases where these cannot work
+21:19 < Shivan_> Right 
+21:19 < Shivan_> ???
+21:20 < tushaar_> I'll give you the basic 'code' skeleton.
+21:20 < tushaar_> After that we'll wind up with a few assignments.
+21:20 < Shivan_> Ok
+21:20 < tushaar_> Go to: https://github.com/TushaarGVS/ML-WebClub-Mentorship/blob/master/SVM_Programs.py
+21:21 < tushaar_> All of you there?
+21:21 < Shivan_> Yes
+21:21 < aryan_himanshu> yes
+21:21 < tushaar_> We saw matplotlib last time.
+21:22 < tushaar_> I'm not going to go through the syntax, but only the logic.
+21:23 < tushaar_> Basic and Prog 01 will be discussed, while Prog - 2 is for Assignment.
+21:23 < tushaar_> Now, Code: 5 - 19.
+21:23 < tushaar_> imports:
+21:23 < tushaar_> sklearn = Provides much of data analysis.
+21:23 < tushaar_> It is 'Sci-Kit learn'.
+21:24 < tushaar_> It has 'svm' and 'datasets' modules, which are imported.
+21:24 < tushaar_> Cool?
+21:24 < aryan_himanshu> ok
+21:24 < chennakeshava> ok
+21:24 < tushaar_> Assumption is pretty obvious.
+21:25 < tushaar_> SVM needs classifiers to classify data.
+21:25 < tushaar_> Say clf is it's classifier.
+21:25 < tushaar_> method svm.SVC = Support Vector Classifier method.
+21:26 < tushaar_> Kernel - as discussed.
+21:26 < tushaar_> gamma = α (gradient-descent).
+21:27 < tushaar_> C = SVM Regularization Parameter.
+21:27 < tushaar_> What do you understand, by that?
+21:28 < tushaar_> Any wild guesses?
+21:28 < chennakeshava> it is used to avoid over fitting ?
+21:28 < tushaar_> Not really.
+21:28 < tushaar_> The ‘C’ parameter tells the SVM optimization how much you want to avoid misclassifying each training example.
+21:28 < tushaar_> For large values of ‘C’, the optimization will choose a smaller-margin hyperplane if that hyperplane does a better job of getting all the training points classified correctly. 
+21:28 < tushaar_> Conversely, a very small value of ‘C’S will cause the optimizer to look for a larger-margin separating hyperplane, even if that hyperplane misclassifies more points.
+21:29 < tushaar_> For very tiny values of ‘C’, you should get misclassified examples, often even if your training data is linearly separable.
+21:29 < tushaar_> So, in layman terms, it supports 'Margin'.
+21:29 < tushaar_> Clear?
+21:29 < chennakeshava> yes
+21:29 < aryan_himanshu> yes
+21:29 < tushaar_> Good.
+21:29 < tushaar_> Next, fit the data!
+21:30 < tushaar_> Next, you find score!
+21:30 < tushaar_> Next, you predict!
+21:30 < tushaar_> On the test subject!
+21:30 < tushaar_> Check Prog - 01 for clarity!
+21:31 < tushaar_> Chuck the imports, check line - 28.
+21:31 < tushaar_> I said, there are datasets already available, one of these is 'digits'.
+21:31 < tushaar_> There's other one called 'iris'.
+21:32 < tushaar_> It's fine till now, right?
+21:32 < chennakeshava> yeah
+21:33 < tushaar_> @aryan, tell me about line 38.
+21:33 < tushaar_> what is the '-1' doing?
+21:33 -!- shasha [75c670e4@gateway/web/freenode/ip.117.198.112.228] has quit [Ping timeout: 260 seconds]
+21:34 < chennakeshava> from start to end
+21:34 < tushaar_> Excluding the 'end'.
+21:35 < aryan_himanshu> it tells about max of 
+21:35 < aryan_himanshu> data and target
+21:35 < tushaar_> So, we're not training it to learn the last data poin.t 
+21:35 < chennakeshava> ok
+21:35 < tushaar_> No 
+21:35 < tushaar_> @aryan, it is 'slicing' in arrays.
+21:36 < aryan_himanshu> -1 should point to last value 
+21:36 < tushaar_> So, [0:2] excludes '2', right?
+21:36 < aryan_himanshu> yes right
+21:36 < tushaar_> Similarly, we're not training '-1'.
+21:36 < tushaar_> So, now, you fit and predict!
+21:37 < tushaar_> You don't have to perform 'score'.
+21:37 < tushaar_> It's just for cross-validation.
+21:37 < tushaar_> It doesn't matter.
+21:38 < chennakeshava> but what does score indicate? like higher score means greater optimization?
+21:38 < tushaar_> Now, accordingly, prediction answer is '8' - Known.
+21:38 < tushaar_> Yes, @chennakeshava, it's precisely like 0.96, 0.97, 1, so on.
+21:39 < chennakeshava> ok
+21:41 < tushaar_> Let's have a look at the model's prediction: https://s23.postimg.org/yp232mz2z/ML_Session_05_11.png
+21:41 < tushaar_> It kinda looks like the model did a pretty good job.
+21:41 < tushaar_> We can kind of recognize an '8'.
+21:42 < tushaar_> Right?
+21:42 < chennakeshava> yeah
+21:42 < aryan_himanshu> yes
+21:42 < tushaar_> So, that's basically it and check out the link at line: 93.
+21:43 < tushaar_> Assignment - Q1: Program - 02 on GitHub.
+21:43 < tushaar_> One more question.
+21:43 < chennakeshava> in line 72, why is gamma set to 0?
+21:43 < tushaar_> We can set any value, 0.001, 0.01, so on.
+21:44 < chennakeshava> oh, ok
+21:44 < tushaar_> Now, for the question.
+21:45 < tushaar_> Take a look at the snapshot: https://s29.postimg.org/wz98vi007/ML_Assignment.png
+21:45 < tushaar_> Q) Find right additional feature to have a hyper-plane for segregating the classes in given snapshot.
+21:46 < tushaar_> Now, that's that.
+21:46 < aryan_himanshu> rotation?
+21:46 < tushaar_> @Aryan 'NO', think about it.
+21:46 < tushaar_> I'll give the answer in the next session.
+21:46 < aryan_himanshu> z=|y|
+21:47 < chennakeshava> y=x^2 + c can be y = T +c , is it like this?
+21:47 < tushaar_> Now, final thing before we wind up.
+21:47 < tushaar_> @chennakeshava, yeah!
+21:47 < chennakeshava> there is a coefficient beside the x^2
+21:48 < tushaar_> Since, we have seen a lot of learning algorithms, I don't expect you to remember each one of it.
+21:48 < tushaar_> And apply it precisely.
+21:48 < tushaar_> Here's scikit-learn's cheat sheet: https://s30.postimg.org/hq6thhl2p/ML_Session_05_01.png
+21:49 < tushaar_> So, until next time. Have a good night.
+21:49 < tushaar_> Thank you all for attending the session.
+21:50 -!- tushaar [~tushaar@157.49.40.57] has left #wc-ml1 []
+--- Log closed Thu Dec 22 21:50:23 2016
