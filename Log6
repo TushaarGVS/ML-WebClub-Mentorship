@@ -1,0 +1,111 @@
+20:02 < tushaar> Welcome to Machine Learning - Session 06.
+20:12 < tushaar_> So, let us start.
+20:12 < tushaar_> Till now we've seen a bunch of ML algorithms.
+20:12 < tushaar_> All from 'Supervised' learning.
+20:16 < tushaar_> Let us start, K Nearest Neighbors Algorithm, today.
+20:16 < tushaar_> Can any of you guess by the name, as to what it might mean?
+20:18 < tushaar_> So, someone respond.
+20:19 < abc> Can't make anything out from the name...
+20:19 < tushaar_> KNN is One of the simplest learning algorithms with ‘low’ calculation time – Lazy learning method.
+20:20 < tushaar_> Called lazy, because: Simply stores the training data (or only minor processing) and waits until it is given a test tuple. 
+20:20 < tushaar_> This is side information: Naive Bayes, Decision Trees – Eager/ Early learning Algorithms 
+20:20 < tushaar_> Is it clear?
+20:21 < Aryanhimanshu> Yes
+20:21 < abc> yes
+20:21 < tushaar_> Cool.
+20:21 < tushaar_> KNN can be used for both classification and regression predictive problems. However, it is more widely used in classification problems in the industry.
+20:21 < tushaar_> Now, as simple as it may seem, let us consider its method of approach.
+20:22 < tushaar_> Consider training set: (X1, Y1), . . ., (Xn, Yn).
+20:22 < tushaar_> Those are the training examples.
+20:22 < tushaar_> Xi Є R^d ; ‘d’ dimensions.
+20:22 < tushaar_> Yi Є {0, 1} = Binary Classification.
+20:22 < tushaar_> X_test = Classified  based on the class of the K – Nearest Neighbors surrounding it.
+20:23 < tushaar_> Now have a look at: https://s29.postimg.org/5k8t0ixk7/ML_Session_06_01.png
+20:23 < tushaar_> Conisder the “Red” 1’s and “Blue” 0’s form the training set and “Yellow”, “Green” dots are the new data-points.
+20:23 < tushaar_> Clear so far?
+20:24 < Aryanhimanshu> Yup
+20:24 < tushaar_> Consider K = 1:
+20:24 < tushaar_> Distance Vector = d(Xi, Xj) where Xi, Xj Є R^d
+20:24 < tushaar_> d(Xi, Xj) = (|Xi – Xj|)^2 = sigma (Xik – Xjk)^2 for k = 1 to d. 
+20:24 < tushaar_> Where: Xi = (Xi1, Xi2, . . . , Xid).
+20:24 < tushaar_> Correct?
+20:25 < abc> yes
+20:25 < Aryanhimanshu> Yes
+20:25 < tushaar_> The “Yellow” dot is classified as a ‘1’, since it is closer to a “Red” 1.
+20:25 < tushaar_> Similarly, the “Green” dot is classified as a ‘0’, since it is closer to a “Blue” 0.
+20:26 < tushaar_> That can clearly be seen from the picture.
+20:26 < tushaar_> Now, what if K = 3?
+20:26 < tushaar_> How would we classify the "Yellow" and the "Green" dots?
+20:27 < tushaar_> Respond!
+20:28 < Vichitr> What is today's topic?
+20:28 < tushaar_> KNN Algorithm.
+20:29 < tushaar_> Take a look at: https://s23.postimg.org/qqqprrbvv/ML_Session_06_02.png
+20:29 < tushaar_> Based on the “Majority” vote (or) the Most-common value of K-Nearest Neighbours, it can be seen that, the “Yellow” dot, is classified as a 1 and then “Green” dot as a ‘0’.
+20:29 < tushaar_> That's how the test data is classified.
+20:30 < tushaar_> Is that clear?
+20:30 < Vichitr> Ok 
+20:30 < tushaar_> It works “pretty” well, there are few theory-based guarantees of its working.
+20:31 < tushaar_> Now, let us look at it from the probabilistic view.
+20:31 < tushaar_> Y (random-variable) ~ P.
+20:31 < tushaar_> P(y) = fraction of points Xi in Nk(x) (= k nearest points to ‘x’) such that, yi = y.
+20:33 < tushaar_> P(y) is sometimes written in terms of “Conditional Probability” as: P(y | x, D).
+20:33 < tushaar_> We must consider: max P(y | x, D) = Majority vote / Most-common value.
+20:33 < tushaar_> Is it clear?
+20:35 < abc> What is majority vote? 
+20:35 < tushaar_> Majority of the neighbors of the same class.
+20:36 < tushaar_> Like, 4 apples and 2 oranges are close to a bowl. Majority is apples, right?
+20:36 < abc> ok
+20:36 < Dashan> Yeah
+20:37 < tushaar_> Now, if you're given a training set, how will you choose K?
+20:37 < tushaar_> Any ideas?
+20:37 < tushaar_> It can be clearly seen that the choice of ‘K’ is very crucial. So, how should we choose ‘K’?
+20:38 < Vichitr_> No idea
+20:38 < tushaar_> Okay. Let's see.
+20:38 < tushaar_> let’s try to see the effect of value “K” on the class boundaries. Following are the different boundaries separating the two classes with different values of K : https://s24.postimg.org/r2jsjn5w5/ML_Session_06_03.png
+20:39 < tushaar_> If you watch carefully, you can see that the boundary becomes smoother with increasing value of K. 
+20:39 < Vichitr_> Clear
+20:39 < tushaar_> With K increasing to infinity it finally becomes all blue or all red depending on the total majority.
+20:39 < tushaar_> The training error rate and the validation error rate are two parameters we need to access on different K-value. 
+20:40 < tushaar_> So, following is the curve for the training error rate with varying value of K : https://s28.postimg.org/71ntsvc0t/ML_Session_06_04.png
+20:41 < tushaar_> So, is K = 1, the best value of K?
+20:41 < tushaar_> Yes or No, and why?
+20:42 < Vichitr_> Yes
+20:42 < Vichitr_> Error is zero
+20:42 < tushaar_> Let us see.
+20:42 < tushaar_> As you can see, the error rate at K=1 is always zero for the training sample. This is because the closest point to any training data point is itself. Hence the prediction is always accurate with K=1. 
+20:43 < tushaar_> But, before we draw any conclusion let's following is the validation error curve with varying value of K : https://s24.postimg.org/dafrfis6d/ML_Session_06_05.png
+20:43 < abc> No, but K=1 isn't good  when there are outliers
+20:43 < tushaar_> Not precisely.
+20:44 < tushaar_> We have discussed a concept called, 'Overfitting'.
+20:44 < tushaar_> The consequence of K = 1, would be Overfitting.
+20:44 < tushaar_> The 2nd graph makes the story more clear.
+20:44 < tushaar_> At K=1, we were overfitting the boundaries. Hence, error rate initially decreases and reaches a minima. After the minima point, it then increase with increasing K.
+20:45 < tushaar_> To get the optimal value of K, you can segregate the training and validation from the initial dataset. Now plot the validation error curve to get the optimal value of K.
+20:45 < tushaar_>  This value of K should be used for all predictions.
+20:45 < Vichitr_> Sorry we can't see the 2nd graph
+20:46 < tushaar_> https://s24.postimg.org/dafrfis6d/ML_Session_06_05.png
+20:48 < tushaar_> In layman terms, Say, you have 100 datapoints. Split this population into two samples of 70 and 30 observations. Use these 70 observation to predict for the other 30. Once you have the prediction for a particular value of k, check the misclassification with actual value. Repeat this exercise for different value of k.
+20:51 < Aryanhimanshu> Ok
+20:52 < tushaar_> Now, is it clear?
+20:52 < Vichitr_> Thanks. It's clear now
+20:53 < tushaar_> So, that was the KNN algorithm. Till now we have seen algorithms pertaining to ‘Supervised’ learning. 
+20:53 < tushaar_> Any doubts?
+20:53 < Vichitr_> No
+20:53 < tushaar_> A small hack: Usually k = sqrt(Number of training examples (m)). This in "most of" the cases gives the correct results.
+20:54 < tushaar_> Now: Answer to the Assignment in the previous session.
+20:54 < tushaar_> Z = sqrt(X) + sqrt(Y).
+20:54 < tushaar_> That's the transformation.
+20:54 < tushaar_> Now, for today's assignment.
+20:55 < tushaar_> Consider the set of 15 examples. A new flower is found, whose Sepal.Length and Sepal.Width is known.
+20:55 < tushaar_> https://s27.postimg.org/q30pny1qr/ML_Session_06_Training_Set.png
+20:55 < tushaar_> That's the training set.
+20:58 < tushaar_> Features of New flower: Sepal.Length = 5.2, Sepal.Width = 3.1, Species = ?
+20:58 < tushaar_> One more thing, check our answers with: https://s29.postimg.org/57onslspj/ML_Assignment_03_Ans.png
+20:59 < tushaar_> One last thing.
+20:59 < tushaar_> https://www.geekboots.com/information/what-is-neural-network-and-how-does-it-work
+20:59 < tushaar_> That's the link for neural networks.
+21:00 < tushaar_> Ping me if you get the answer to the Assignment or for any doubts.
+21:00 < tushaar_> That's all for the session, have a good night.
+21:00 < tushaar_> Thank you for attending the session and this will be the last session in the WebClub's ML Mentorship programme.
+21:01 -!- tushaar [~tushaar@157.49.215.93] has left #wc-ml1 []
+--- Log closed Sun Dec 25 21:01:48 2016
