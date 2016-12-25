@@ -36,9 +36,7 @@
 20:26 < tushaar_> That can clearly be seen from the picture.
 20:26 < tushaar_> Now, what if K = 3?
 20:26 < tushaar_> How would we classify the "Yellow" and the "Green" dots?
-20:27 < tushaar_> Respond!
-20:28 < Vichitr> What is today's topic?
-20:28 < tushaar_> KNN Algorithm.
+20:28 < Vichitr> No idea
 20:29 < tushaar_> Take a look at: https://s23.postimg.org/qqqprrbvv/ML_Session_06_02.png
 20:29 < tushaar_> Based on the “Majority” vote (or) the Most-common value of K-Nearest Neighbours, it can be seen that, the “Yellow” dot, is classified as a 1 and then “Green” dot as a ‘0’.
 20:29 < tushaar_> That's how the test data is classified.
