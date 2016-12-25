@@ -13,5 +13,6 @@ The logs aim at providing a grip over the various concepts and aspects of Machin
 - What is `Gradient-Descent` ?
 - What is `Logistic Regression` ?
 - What is a `Support Vector Machine` (SVM) ?
+- What is  `K Nearest Neighbors` (KNN) Algorithm ?
 
 Along with various Machine Learning concepts presented, `Python Programming` (Code) necessary for Data Science is also included.
