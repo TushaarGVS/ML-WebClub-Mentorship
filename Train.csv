@@ -1,0 +1,16 @@
+Sepal Length,Sepal Width,Species
+5.3,3.7,setosa
+5.1,3.8,setosa
+7.2,3.0,virginica
+5.4,3.4,setosa
+5.1,3.3,setosa
+5.4,3.9,setosa
+7.4,2.8,virginica
+6.1,2.8,versicolor
+7.3,2.9,virginica
+6.0,2.7,versicolor
+5.8,2.8,virginica
+6.3,2.3,versicolor
+5.1,2.5,versicolor
+6.3,2.5,versicolor
+5.5,2.4,versicolor
