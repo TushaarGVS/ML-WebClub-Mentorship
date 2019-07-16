@@ -1,9 +1,6 @@
 # Machine Learning - WebClub Mentorship
 
-Machine Learning is one of the trending and interesting topics of Computer-Science, falling under the category of `Artificial Intelligence`.
-Machine Learning:
-- 
-Machine learning is a type of artificial intelligence (AI) that provides computers with the ability to learn without being explicitly programmed.
+Machine learning is a mechanism that facilitates *intelligent* decision-making capabilities without being explicitly programmed.
 
 The logs aim at providing a grip over the various concepts and aspects of Machine Learning:
 - What is `Machine Learning` ?
